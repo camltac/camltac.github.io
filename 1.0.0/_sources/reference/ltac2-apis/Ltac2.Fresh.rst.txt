@@ -1,0 +1,19 @@
+.. _mltac2-api-Ltac2.Fresh:
+
+``Fresh``
+=========
+
+.. rst-class:: module-path
+
+``Ltac2.Fresh``
+
+.. toctree::
+   :hidden:
+
+   Ltac2.Fresh.Free
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec module anchored" id="module-Free"><a href="#module-Free" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Fresh.Free.html">Free</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-fresh"><a href="#val-fresh" class="anchor"></a><code><span><span class="keyword">val</span> fresh : <span><a href="Ltac2.Fresh.Free.html#type-t">Free.t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code></div><div class="spec-doc"><p><code>fresh free id</code> generates a fresh identifier with the given base name which is not a member of <code>free</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-next"><a href="#val-next" class="anchor"></a><code><span><span class="keyword">val</span> next : <span><a href="Ltac2.Fresh.Free.html#type-t">Free.t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-ident">ident</a> * <a href="Ltac2.Fresh.Free.html#type-t">Free.t</a></span></code></div><div class="spec-doc"><p><code>next free id</code> generates a fresh identifier with the given base name which is not a member of <code>free</code>, and returns the updated set. More efficient than composing <a href="#val-fresh"><code>fresh</code></a> and <a href="Ltac2.Fresh.Free.html#val-add"><code>Free.add</code></a>.</p></div></div>
+   </div>

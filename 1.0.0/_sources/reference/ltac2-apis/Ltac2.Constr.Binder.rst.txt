@@ -1,0 +1,19 @@
+.. _mltac2-api-Ltac2.Constr.Binder:
+
+``Binder``
+==========
+
+.. rst-class:: module-path
+
+``Ltac2.Constr.Binder``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span><span> = <a href="../ltac2-apis.html#type-binder">binder</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-relevance"><a href="#type-relevance" class="anchor"></a><code><span><span class="keyword">type</span> relevance</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Sorts/index.html#type-relevance">Sorts.relevance</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-make"><a href="#val-make" class="anchor"></a><code><span><span class="keyword">val</span> make : 
+     <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Name/index.html#type-t">Names.Name.t</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><span>(<a href="#type-t">t</a>, unit)</span> <span class="xref-unresolved">Stdlib</span>.result</span></span></code></div><div class="spec-doc"><p><code>make env sigma name typ</code> creates a binder given the name and the type of the bound variable. Fails if the type is not a type in the given environment.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-unsafe_make"><a href="#val-unsafe_make" class="anchor"></a><code><span><span class="keyword">val</span> unsafe_make : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Name/index.html#type-t">Names.Name.t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-relevance">relevance</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>unsafe_make name rel typ</code> creates a binder given the name, relevance, and type of the bound variable.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-name"><a href="#val-name" class="anchor"></a><code><span><span class="keyword">val</span> name : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Name/index.html#type-t">Names.Name.t</a></span></code></div><div class="spec-doc"><p><code>name binder</code> retrieves the name of the binder.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-type_"><a href="#val-type_" class="anchor"></a><code><span><span class="keyword">val</span> type_ : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-constr">constr</a></span></code></div><div class="spec-doc"><p><code>type_ binder</code> retrieves the type of the binder.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-relevance"><a href="#val-relevance" class="anchor"></a><code><span><span class="keyword">val</span> relevance : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-relevance">relevance</a></span></code></div><div class="spec-doc"><p><code>relevance binder</code> retrieves the relevance of the binder.</p></div></div>
+   </div>

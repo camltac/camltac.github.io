@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Syntax.Induction_arg:
+
+``Induction_arg``
+=================
+
+.. rst-class:: module-path
+
+``Ltac2.Syntax.Induction_arg``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span></code></div><div class="spec-doc"><ul class="at-tags"><li class="see"><span class="at-tag">see</span> <a href="https://rocq-prover.org/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#grammar-token-induction_arg">Reference manual, induction_arg</a></li></ul></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-on_constr"><a href="#val-on_constr" class="anchor"></a><code><span><span class="keyword">val</span> on_constr : <span><a href="Ltac2.Syntax.html#type-constr_with_bindings">constr_with_bindings</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>on_constr t</code> performs induction/case analysis on <code>t</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-on_hyp"><a href="#val-on_hyp" class="anchor"></a><code><span><span class="keyword">val</span> on_hyp : <span><a href="Ltac2.Syntax.html#type-hypothesis">hypothesis</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>on_hyp h</code> performs induction/case analysis on hypothesis <code>h</code>.</p></div></div>
+   </div>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Control - Camltac documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Env" href="Ltac2.Env.html" /><link rel="prev" title="Constructor" href="Ltac2.Constructor.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75453710" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" />
+    <link rel="stylesheet" type="text/css" href="../../_static/rocq-notations.css?v=07fd7624" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mltac2-api.css?v=fe83dc6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/search-suggest.css?v=581cb6e6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon.css?v=90b20a3a" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon-dark.css?v=403f2018" />
+    <link rel="stylesheet" type="text/css" href="../../_static/hlist.css?v=e3c1df49" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sidebar.css?v=3b2e7588" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Control"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Camltac</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tour/index.html">A tour of Camltac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/running-ocaml-code.html">Running OCaml code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/defining-new-tactics.html">Defining new tactics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/antiquotations.html">Antiquotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-terms.html">Pattern matching over terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-goals.html">Pattern matching over goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/ocaml-libraries-and-preprocessors.html">Using OCaml libraries and preprocessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/interoperability-with-ltac2.html">Interoperability with Ltac2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/rocq-apis.html">Using internal Rocq APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/end.html">Going further</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/writing-a-tactic/index.html">Writing a tactic with Camltac</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/setting-up-a-camltac-project.html">Setting up a Camltac project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/searching-for-exact-matches.html">Searching for exact matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/matching-goals-with-variables.html">Matching goals with variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/importing-the-tactic-in-other-files.html">Importing the tactic in other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/using-the-tactic-from-ltac2.html">Using the tactic from Ltac2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/index.html">How-to guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-dune.html">How to use Camltac with Dune</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-your-makefile.html">How to use Camltac with Makefiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/configure-your-editor.html">How to configure your editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Run.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Run</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Module.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Module</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Load.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Load</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Eval.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Eval</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Check.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Check</span></span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pattern-matching.html">Pattern matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ltac2-comparison.html">Comparison with Ltac2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ltac2-apis.html">Ltac2 APIs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constant.html"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constr.html"><code class="docutils literal notranslate"><span class="pre">Constr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Binder.html"><code class="docutils literal notranslate"><span class="pre">Binder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Cast.html"><code class="docutils literal notranslate"><span class="pre">Cast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Pretype.html"><code class="docutils literal notranslate"><span class="pre">Pretype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Relevance.html"><code class="docutils literal notranslate"><span class="pre">Relevance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Unsafe.html"><code class="docutils literal notranslate"><span class="pre">Unsafe</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constructor.html"><code class="docutils literal notranslate"><span class="pre">Constructor</span></code></a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Env.html"><code class="docutils literal notranslate"><span class="pre">Env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Fresh.html"><code class="docutils literal notranslate"><span class="pre">Fresh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Fresh.Free.html"><code class="docutils literal notranslate"><span class="pre">Free</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Ident.html"><code class="docutils literal notranslate"><span class="pre">Ident</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Ind.html"><code class="docutils literal notranslate"><span class="pre">Ind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Message.html"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Module.html"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Module.Field.html"><code class="docutils literal notranslate"><span class="pre">Field</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Pattern.html"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Proj.html"><code class="docutils literal notranslate"><span class="pre">Proj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Rewrite.html"><code class="docutils literal notranslate"><span class="pre">Rewrite</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Rewrite.Strategy.html"><code class="docutils literal notranslate"><span class="pre">Strategy</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Scheme.html"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Std.html"><code class="docutils literal notranslate"><span class="pre">Std</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Std.Red.html"><code class="docutils literal notranslate"><span class="pre">Red</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Syntax.html"><code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Syntax.Induction_arg.html"><code class="docutils literal notranslate"><span class="pre">Induction_arg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Syntax.Induction_clause.html"><code class="docutils literal notranslate"><span class="pre">Induction_clause</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.TransparentState.html"><code class="docutils literal notranslate"><span class="pre">TransparentState</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Unification.html"><code class="docutils literal notranslate"><span class="pre">Unification</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/index.html">Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/why-camltac.html">Why Camltac?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/execution-model/index.html">Camltac’s execution model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/parsing.html">Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/build-directives.html">Build directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/compilation.html">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/dynamic-linking.html">Dynamic linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/runtime.html">Camltac’s runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced-topics/index.html">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced-topics/rocq-apis.html">Using Rocq’s internal APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Additional links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coq-workshop.gitlab.io/2026/files/EA6.pdf">Rocqshop 2026</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://infoscience.epfl.ch/entities/publication/926430ae-7511-4498-bb12-5c8cf559ec33">Master's thesis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#generic-backtracking-control">Generic backtracking control</a></li>
+<li><a class="reference internal" href="#proof-state-manipulation">Proof state manipulation</a></li>
+<li><a class="reference internal" href="#goal-inspection">Goal inspection</a></li>
+<li><a class="reference internal" href="#refinement">Refinement</a></li>
+<li><a class="reference internal" href="#evars">Evars</a></li>
+<li><a class="reference internal" href="#timing">Timing</a></li>
+<li><a class="reference internal" href="#misc">Misc</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Camltac</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Reference</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../ltac2-apis.html"><span itemprop="name">Ltac2 APIs</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="3" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name"><code class="docutils literal notranslate"><span class="pre">Control</span></code></strong>
+        <meta itemprop="position" content="4" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="control">
+<span id="mltac2-api-ltac2-control"></span><h1><code class="docutils literal notranslate"><span class="pre">Control</span></code><a class="headerlink" href="#control" title="Link to this heading">#</a></h1>
+<p class="module-path"><code class="docutils literal notranslate"><span class="pre">Ltac2.Control</span></code></p>
+<section id="generic-backtracking-control">
+<h2>Generic backtracking control<a class="headerlink" href="#generic-backtracking-control" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-throw"><a href="#val-throw" class="anchor"></a><code><span><span class="keyword">val</span> throw : <span><a href="../ltac2-apis.html#type-iexn">iexn</a> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Fatal exception throwing. This does not induce backtracking.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-zero"><a href="#val-zero" class="anchor"></a><code><span><span class="keyword">val</span> zero : <span><a href="../ltac2-apis.html#type-iexn">iexn</a> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>zero e</code> raises the exception <code>e</code>, passing control to the current backtracking continuation.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-plus"><a href="#val-plus" class="anchor"></a><code><span><span class="keyword">val</span> plus :
+  <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span>(<span><a href="../ltac2-apis.html#type-iexn">iexn</a> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span>)</span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Backtracking point.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-once"><a href="#val-once" class="anchor"></a><code><span><span class="keyword">val</span> once : <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>once t</code> behaves like <code>t</code>, except it has at most one success: <code>once t</code> stops after the first success of <code>t</code>. If <code>t</code> fails with <code>e</code>, <code>once t</code> also fails with <code>e</code>. If <code>once t; t'</code> fails on <code>t'</code>, then <code>once t</code> will not backtrack and evaluate <code>t</code> for another value, and will instead fail.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-case"><a href="#val-case" class="anchor"></a><code><span><span class="keyword">val</span> case : <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-case">Proofview.case</a></span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>case</code> is the most general primitive to control backtracking:</p><ul><li>If <code>t</code> would fail with <code>e</code>, <code>case t</code> returns <code>Fail e</code>.</li><li>If <code>t</code> would succeed and evaluate to <code>v</code>, then <code>case t</code> returns <code>Next (v, h)</code>, where <code>h</code> is the continuation to execute in case of subsequent failure. Calling <code>h</code> resets the backtrackable state to its value when <code>case</code> was called.</li></ul><p><code>case</code> reifies a backtracking computation into an inspectable value; it allows the programmer to make explicit the effects which are normally implicit (i.e., they do not appear in the type system).</p></div></div>
+</div></section>
+<section id="proof-state-manipulation">
+<h2>Proof state manipulation<a class="headerlink" href="#proof-state-manipulation" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-numgoals"><a href="#val-numgoals" class="anchor"></a><code><span><span class="keyword">val</span> numgoals : <span>int <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>numgoals</code> returns the number of goals currently focused.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-dispatch"><a href="#val-dispatch" class="anchor"></a><code><span><span class="keyword">val</span> dispatch : <span><span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> list</span> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>dispatch</code> is used to apply a different tactic to each goal under focus. It works by applying each of the tactics in a focus restricted to the corresponding goal (starting with the first goal).</p><p>Fails when the length of the tactic list is not equal to the number of focused goals.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-extend"><a href="#val-extend" class="anchor"></a><code><span><span class="keyword">val</span> extend :
+  <span><span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> list</span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> list</span> <span class="arrow">&#45;&gt;</span></span>
+  <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>extend</code> is a more flexible variant of <a href="#val-dispatch"><code>dispatch</code></a>, where the second argument tactic is &quot;repeated&quot; enough times such that every goal has a tactic assigned to it. <code>extend b e r</code> applies the tactics in <code>b</code> to the first <code>length b</code> goals, the tactics in <code>r</code> to the last <code>length r</code> goals, and <code>e</code> to all tactics in between.</p><p>Fails if <code>length b + length r</code> is greater than the number of goals under focus.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-enter"><a href="#val-enter" class="anchor"></a><code><span><span class="keyword">val</span> enter : <span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>enter t</code> applies <code>t</code> in each goal under focus independently.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-focus"><a href="#val-focus" class="anchor"></a><code><span><span class="keyword">val</span> focus : <span>int <span class="arrow">&#45;&gt;</span></span> <span>int <span class="arrow">&#45;&gt;</span></span> <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>focus i j t</code> focuses a proofview on the goals from index <code>i</code> to index <code>j</code> (inclusive, goals are indexed from 1) and runs <code>t</code> with those goals under focus, i.e., goals number <code>i</code> to <code>j</code> become the only focused goals during the execution of <code>t</code>. When focus returns, the present focus is restored.</p><p>If the range <code>i</code>–<code>j</code> is invalid, fails with a backtrackable &quot;no such goal&quot; error.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-shelve"><a href="#val-shelve" class="anchor"></a><code><span><span class="keyword">val</span> shelve : <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Shelve all goals under focus. The goals are placed on the shelf for later use, or to be solved by side effects.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-shelve_unifiable"><a href="#val-shelve_unifiable" class="anchor"></a><code><span><span class="keyword">val</span> shelve_unifiable : <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Shelves the unifiable goals under focus, i.e., the goals which appear in other goals under focus (the unfocused goals are not considered).</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-unshelve"><a href="#val-unshelve" class="anchor"></a><code><span><span class="keyword">val</span> unshelve : <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>unshelve t</code> runs <code>t</code> and unshelves existential variables added to the shelf by its execution, prepending them to the current goal. Returns the value produced by <code>t</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-new_goal"><a href="#val-new_goal" class="anchor"></a><code><span><span class="keyword">val</span> new_goal : <span><a href="../ltac2-apis.html#type-evar">evar</a> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Adds the given evar to the list of goals as the last one. If it is already defined in the current state, does nothing.</p><p>Panics if the evar is not in the current state.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-reorder_goals"><a href="#val-reorder_goals" class="anchor"></a><code><span><span class="keyword">val</span> reorder_goals : <span><span>int list</span> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>reorder_goals l</code> reorders the goals according to (1-indexed) list <code>l</code>: goal <code>i</code> after executing the tactic was goal <code>nth l (i-1)</code> before executing the tactic.</p><p>Raises if <code>l</code> is not a permutation of ints from <code>1</code> to <a href="#val-numgoals"><code>numgoals</code></a>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-cycle"><a href="#val-cycle" class="anchor"></a><code><span><span class="keyword">val</span> cycle : <span>int <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>If <code>n</code> is positive, <code>cycle n</code> puts the first <code>n</code> goals last. If <code>n</code> is negative, then it puts the last <code>n</code> goals first.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-progress"><a href="#val-progress" class="anchor"></a><code><span><span class="keyword">val</span> progress : <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>progress t</code> checks the state of the proof after <code>t</code>. If it is identical to the state before, then <code>progress t</code> fails, otherwise it succeeds like <code>t</code>.</p></div></div>
+</div></section>
+<section id="goal-inspection">
+<h2>Goal inspection<a class="headerlink" href="#goal-inspection" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-goal"><a href="#val-goal" class="anchor"></a><code><span><span class="keyword">val</span> goal : <span><a href="../ltac2-apis.html#type-constr">constr</a> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>goal</code> returns the conclusion of this goal.</p><p>Fails if there is not exactly one goal under focus.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-hyp"><a href="#val-hyp" class="anchor"></a><code><span><span class="keyword">val</span> hyp : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/index.html#type-variable">Names.variable</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-constr">constr</a></span></code></div><div class="spec-doc"><p><code>hyp env id</code> looks for the hypothesis or section variable in <code>env</code> with the given name.</p><ul class="at-tags"><li class="raises"><span class="at-tag">raises</span> <code>Not_found</code> <p>If the hypothesis could not be found in the environment.</p></li></ul></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-hyp_value"><a href="#val-hyp_value" class="anchor"></a><code><span><span class="keyword">val</span> hyp_value : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/index.html#type-variable">Names.variable</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> option</span></span></code></div><div class="spec-doc"><p><code>hyp_value env id</code> looks for the hypothesis or section variable with the given name in <code>env</code> and returns its value (<code>v</code> in <code>H := v</code>) if there is one.</p><ul class="at-tags"><li class="raises"><span class="at-tag">raises</span> <code>Not_found</code> <p>If the hypothesis could not be found in the environment.</p></li></ul></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-hyps"><a href="#val-hyps" class="anchor"></a><code><span><span class="keyword">val</span> hyps : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span> <span><span>(<a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/index.html#type-variable">Names.variable</a> * <span><a href="../ltac2-apis.html#type-constr">constr</a> option</span> * <a href="../ltac2-apis.html#type-constr">constr</a>)</span> list</span></span></code></div><div class="spec-doc"><p><code>hyps env</code> returns the list of hypotheses and section variables in the environment <code>env</code>.</p></div></div>
+</div></section>
+<section id="refinement">
+<h2>Refinement<a class="headerlink" href="#refinement" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-refine"><a href="#val-refine" class="anchor"></a><code><span><span class="keyword">val</span> refine : <span><span>(<span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> * <a href="../ltac2-apis.html#type-constr">constr</a>)</span> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>refine t</code> computes the type of <code>t</code> in the current goal environment and evar map, and unifies the type with the current goal. All unification variables produced while computing <code>t</code> not solved by this unification process are added as new goals.</p></div></div>
+</div></section>
+<section id="evars">
+<h2>Evars<a class="headerlink" href="#evars" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-with_holes"><a href="#val-with_holes" class="anchor"></a><code><span><span class="keyword">val</span> with_holes :
+  <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span>(<span><span class="type-var">'a</span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'b</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span>)</span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span class="type-var">'b</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>with_holes t f</code> evaluates <code>t</code>, then applies <code>f</code> to the result, and fails if some evar generated by <code>t</code> has not been solved when <code>f</code> returns.</p></div></div>
+</div></section>
+<section id="timing">
+<h2>Timing<a class="headerlink" href="#timing" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-time"><a href="#val-time" class="anchor"></a><code><span><span class="keyword">val</span> time : <span><span class="optlabel">?name</span>:string <span class="arrow">&#45;&gt;</span></span> <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Displays the time taken by a tactic to evaluate.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-timeout"><a href="#val-timeout" class="anchor"></a><code><span><span class="keyword">val</span> timeout : <span>int <span class="arrow">&#45;&gt;</span></span> <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>timeout n t</code> runs <code>t</code> with a timeout of <code>n</code> seconds.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-timeoutf"><a href="#val-timeoutf" class="anchor"></a><code><span><span class="keyword">val</span> timeoutf : <span>float <span class="arrow">&#45;&gt;</span></span> <span><span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span><span class="type-var">'a</span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p><code>timeoutf f t</code> runs <code>t</code> with a timeout of <code>f</code> seconds.</p></div></div>
+</div></section>
+<section id="misc">
+<h2>Misc<a class="headerlink" href="#misc" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-abstract"><a href="#val-abstract" class="anchor"></a><code><span><span class="keyword">val</span> abstract : <span><span class="optlabel">?name</span>:<a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Abstract a subgoal.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-check_interrupt"><a href="#val-check_interrupt" class="anchor"></a><code><span><span class="keyword">val</span> check_interrupt : <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>For internal use.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-print_err"><a href="#val-print_err" class="anchor"></a><code><span><span class="keyword">val</span> print_err : <span><a href="../ltac2-apis.html#type-err">err</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-message">message</a></span></code></div><div class="spec-doc"><p>Print internal error.</p></div></div>
+</div></section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Ltac2.Constructor.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title"><code class="docutils literal notranslate"><span class="pre">Constructor</span></code></div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="Ltac2.Env.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title"><code class="docutils literal notranslate"><span class="pre">Env</span></code></div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Dario Halilovic (<a href="https://systemf.epfl.ch">SYSTEMF @ EPFL</a>)</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/suggestions-data.js"></script>
+      <script src="../../_static/search-suggest.js?v=88205e4c"></script>
+      <script src="../../_static/alectryon.js?v=fa737423"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

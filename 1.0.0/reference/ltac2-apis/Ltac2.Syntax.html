@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Syntax - Camltac documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Induction_arg" href="Ltac2.Syntax.Induction_arg.html" /><link rel="prev" title="Red" href="Ltac2.Std.Red.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75453710" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" />
+    <link rel="stylesheet" type="text/css" href="../../_static/rocq-notations.css?v=07fd7624" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mltac2-api.css?v=fe83dc6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/search-suggest.css?v=581cb6e6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon.css?v=90b20a3a" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon-dark.css?v=403f2018" />
+    <link rel="stylesheet" type="text/css" href="../../_static/hlist.css?v=e3c1df49" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sidebar.css?v=3b2e7588" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Syntax"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Camltac</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tour/index.html">A tour of Camltac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/running-ocaml-code.html">Running OCaml code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/defining-new-tactics.html">Defining new tactics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/antiquotations.html">Antiquotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-terms.html">Pattern matching over terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-goals.html">Pattern matching over goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/ocaml-libraries-and-preprocessors.html">Using OCaml libraries and preprocessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/interoperability-with-ltac2.html">Interoperability with Ltac2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/rocq-apis.html">Using internal Rocq APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/end.html">Going further</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/writing-a-tactic/index.html">Writing a tactic with Camltac</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/setting-up-a-camltac-project.html">Setting up a Camltac project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/searching-for-exact-matches.html">Searching for exact matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/matching-goals-with-variables.html">Matching goals with variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/importing-the-tactic-in-other-files.html">Importing the tactic in other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/using-the-tactic-from-ltac2.html">Using the tactic from Ltac2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/writing-a-tactic/conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/index.html">How-to guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-dune.html">How to use Camltac with Dune</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-your-makefile.html">How to use Camltac with Makefiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/configure-your-editor.html">How to configure your editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../commands/index.html">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Run.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Run</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Module.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Module</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Load.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Load</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Eval.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Eval</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../commands/Check.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Check</span></span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pattern-matching.html">Pattern matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ltac2-comparison.html">Comparison with Ltac2</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../ltac2-apis.html">Ltac2 APIs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constant.html"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constr.html"><code class="docutils literal notranslate"><span class="pre">Constr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Binder.html"><code class="docutils literal notranslate"><span class="pre">Binder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Cast.html"><code class="docutils literal notranslate"><span class="pre">Cast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Pretype.html"><code class="docutils literal notranslate"><span class="pre">Pretype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Relevance.html"><code class="docutils literal notranslate"><span class="pre">Relevance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Constr.Unsafe.html"><code class="docutils literal notranslate"><span class="pre">Unsafe</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Constructor.html"><code class="docutils literal notranslate"><span class="pre">Constructor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Control.html"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Env.html"><code class="docutils literal notranslate"><span class="pre">Env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Fresh.html"><code class="docutils literal notranslate"><span class="pre">Fresh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Fresh.Free.html"><code class="docutils literal notranslate"><span class="pre">Free</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Ident.html"><code class="docutils literal notranslate"><span class="pre">Ident</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Ind.html"><code class="docutils literal notranslate"><span class="pre">Ind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Message.html"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Module.html"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Module.Field.html"><code class="docutils literal notranslate"><span class="pre">Field</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Pattern.html"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Proj.html"><code class="docutils literal notranslate"><span class="pre">Proj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Rewrite.html"><code class="docutils literal notranslate"><span class="pre">Rewrite</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Rewrite.Strategy.html"><code class="docutils literal notranslate"><span class="pre">Strategy</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Scheme.html"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Std.html"><code class="docutils literal notranslate"><span class="pre">Std</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Std.Red.html"><code class="docutils literal notranslate"><span class="pre">Red</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Syntax.Induction_arg.html"><code class="docutils literal notranslate"><span class="pre">Induction_arg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="Ltac2.Syntax.Induction_clause.html"><code class="docutils literal notranslate"><span class="pre">Induction_clause</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.TransparentState.html"><code class="docutils literal notranslate"><span class="pre">TransparentState</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="Ltac2.Unification.html"><code class="docutils literal notranslate"><span class="pre">Unification</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/index.html">Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/why-camltac.html">Why Camltac?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/execution-model/index.html">Camltac’s execution model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/parsing.html">Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/build-directives.html">Build directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/compilation.html">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/dynamic-linking.html">Dynamic linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/runtime.html">Camltac’s runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced-topics/index.html">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced-topics/rocq-apis.html">Using Rocq’s internal APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Additional links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coq-workshop.gitlab.io/2026/files/EA6.pdf">Rocqshop 2026</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://infoscience.epfl.ch/entities/publication/926430ae-7511-4498-bb12-5c8cf559ec33">Master's thesis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#hypotheses">Hypotheses</a></li>
+<li><a class="reference internal" href="#bindings">Bindings</a></li>
+<li><a class="reference internal" href="#intropatterns">Intropatterns</a><ul>
+<li><a class="reference internal" href="#naming-patterns">Naming patterns</a></li>
+<li><a class="reference internal" href="#splitting-patterns">Splitting patterns</a></li>
+<li><a class="reference internal" href="#equality-patterns">Equality patterns</a></li>
+<li><a class="reference internal" href="#other-patterns">Other patterns</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#occurrences">Occurrences</a></li>
+<li><a class="reference internal" href="#clauses">Clauses</a></li>
+<li><a class="reference internal" href="#move-locations">Move locations</a></li>
+<li><a class="reference internal" href="#inversion-kinds">Inversion kinds</a></li>
+<li><a class="reference internal" href="#rewrites">Rewrites</a></li>
+<li><a class="reference internal" href="#induction-clauses">Induction clauses</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Camltac</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Reference</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../ltac2-apis.html"><span itemprop="name">Ltac2 APIs</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="3" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name"><code class="docutils literal notranslate"><span class="pre">Syntax</span></code></strong>
+        <meta itemprop="position" content="4" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="syntax">
+<span id="mltac2-api-ltac2-syntax"></span><h1><code class="docutils literal notranslate"><span class="pre">Syntax</span></code><a class="headerlink" href="#syntax" title="Link to this heading">#</a></h1>
+<p class="module-path"><code class="docutils literal notranslate"><span class="pre">Ltac2.Syntax</span></code></p>
+<div class="toctree-wrapper compound">
+</div>
+<section id="hypotheses">
+<h2>Hypotheses<a class="headerlink" href="#hypotheses" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-hypothesis"><a href="#type-hypothesis" class="anchor"></a><code><span><span class="keyword">type</span> hypothesis</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Type of hypothesis target.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-Named_hyp"><a href="#extension-decl-Named_hyp" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-hypothesis">hypothesis</a> += </span></code><ol><li id="extension-Named_hyp" class="def variant extension anchored"><a href="#extension-Named_hyp" class="anchor"></a><code><span>| </span><span><span class="extension">Named_hyp</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Named_hyp h</code> selects hypothesis <code>h</code>.</p><span class="comment-delim">*)</span></div></li><li id="extension-Nth_hyp" class="def variant extension anchored"><a href="#extension-Nth_hyp" class="anchor"></a><code><span>| </span><span><span class="extension">Nth_hyp</span> <span class="keyword">of</span> int</span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Nth_hyp n</code> selects the <code>n</code>-th hypothesis.</p><span class="comment-delim">*)</span></div></li></ol></div></div>
+</div></section>
+<section id="bindings">
+<h2>Bindings<a class="headerlink" href="#bindings" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<ul class="at-tags"><li class="see"><span class="at-tag">see</span> <a href="https://rocq-prover.org/doc/master/refman/proof-engine/tactics.html#bindings">Reference manual, &quot;Bindings&quot;</a></li></ul><div class="odoc-spec"><div class="spec type anchored" id="type-bindings"><a href="#type-bindings" class="anchor"></a><code><span><span class="keyword">type</span> bindings</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Type of term bindings.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-No_bindings"><a href="#extension-decl-No_bindings" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-bindings">bindings</a> += </span></code><ol><li id="extension-No_bindings" class="def variant extension anchored"><a href="#extension-No_bindings" class="anchor"></a><code><span>| </span><span><span class="extension">No_bindings</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>An empty list of bindings.</p><span class="comment-delim">*)</span></div></li><li id="extension-Implicit" class="def variant extension anchored"><a href="#extension-Implicit" class="anchor"></a><code><span>| </span><span><span class="extension">Implicit</span> <span class="keyword">of</span> <span><a href="../ltac2-apis.html#type-constr">constr</a> list</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Implicit [t₁; …; tₙ]</code> binds free variables in left-to-right order of their first appearance in the relevant term.</p><span class="comment-delim">*)</span></div></li><li id="extension-Explicit" class="def variant extension anchored"><a href="#extension-Explicit" class="anchor"></a><code><span>| </span><span><span class="extension">Explicit</span> <span class="keyword">of</span> <span><span>(<a href="#type-hypothesis">hypothesis</a> * <a href="../ltac2-apis.html#type-constr">constr</a>)</span> list</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Explicit [(h₁, t₁); …; (hₙ, tₙ)]</code> binds variables <code>hᵢ</code> to <code>tᵢ</code>.</p><span class="comment-delim">*)</span></div></li></ol></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-constr_with_bindings"><a href="#type-constr_with_bindings" class="anchor"></a><code><span><span class="keyword">type</span> constr_with_bindings</span><span> = </span><span>{</span></code><ol><li id="type-constr_with_bindings.t" class="def record field anchored"><a href="#type-constr_with_bindings.t" class="anchor"></a><code><span>t : <a href="../ltac2-apis.html#type-constr">constr</a>;</span></code></li><li id="type-constr_with_bindings.bindings" class="def record field anchored"><a href="#type-constr_with_bindings.bindings" class="anchor"></a><code><span>bindings : <a href="#type-bindings">bindings</a>;</span></code></li></ol><code><span>}</span></code></div><div class="spec-doc"><p>A term with <a href="#type-bindings"><code>bindings</code></a>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-term"><a href="#val-term" class="anchor"></a><code><span><span class="keyword">val</span> term : <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-constr_with_bindings">constr_with_bindings</a></span></code></div><div class="spec-doc"><p><code>term t</code> adds default bindings to <code>t</code>.</p><p>Expected usage: <code>{ (term t) with bindings = … }</code>.</p></div></div>
+</div></section>
+<section id="intropatterns">
+<h2>Intropatterns<a class="headerlink" href="#intropatterns" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-intropattern"><a href="#type-intropattern" class="anchor"></a><code><span><span class="keyword">type</span> <span>+'a intropattern</span></span></code></div><div class="spec-doc"><p>An intropattern lets you specify the name to assign to variables and hypotheses introduced by tactics.</p><p>The type variable is used for statically distinguishing subtypes of intropatterns.</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-naming"><a href="#type-naming" class="anchor"></a><code><span><span class="keyword">type</span> naming</span><span> = </span><span>[ </span></code><ol><li id="type-naming.Naming" class="def variant constructor anchored"><a href="#type-naming.Naming" class="anchor"></a><code><span>| </span><span>`Naming</span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for intropatterns used for naming hypotheses (e.g., in <code>eqn:</code> clauses).</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-or_and"><a href="#type-or_and" class="anchor"></a><code><span><span class="keyword">type</span> or_and</span><span> = </span><span>[ </span></code><ol><li id="type-or_and.Or_and" class="def variant constructor anchored"><a href="#type-or_and.Or_and" class="anchor"></a><code><span>| </span><span>`Or_and</span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for intropatterns that split conjunctions/disjunctions, sometimes used in <code>as</code> clauses.</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-orientation"><a href="#type-orientation" class="anchor"></a><code><span><span class="keyword">type</span> orientation</span><span> = </span><span>[ </span></code><ol><li id="type-orientation.Orientation" class="def variant constructor anchored"><a href="#type-orientation.Orientation" class="anchor"></a><code><span>| </span><span>`Orientation</span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for intropatterns that are used as rewrite orientations (i.e., <code>(--&gt;)</code> and <code>(&lt;--)</code>).</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-equality"><a href="#type-equality" class="anchor"></a><code><span><span class="keyword">type</span> equality</span><span> = </span><span>[ </span></code><ol><li id="type-equality.orientation" class="def variant type anchored"><a href="#type-equality.orientation" class="anchor"></a><code><span>| </span><span><a href="#type-orientation">orientation</a></span></code></li><li id="type-equality.Equality" class="def variant constructor anchored"><a href="#type-equality.Equality" class="anchor"></a><code><span>| </span><span>`Equality</span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for equality intropatterns.</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-simple"><a href="#type-simple" class="anchor"></a><code><span><span class="keyword">type</span> simple</span><span> = </span><span>[ </span></code><ol><li id="type-simple.naming" class="def variant type anchored"><a href="#type-simple.naming" class="anchor"></a><code><span>| </span><span><a href="#type-naming">naming</a></span></code></li><li id="type-simple.or_and" class="def variant type anchored"><a href="#type-simple.or_and" class="anchor"></a><code><span>| </span><span><a href="#type-or_and">or_and</a></span></code></li><li id="type-simple.equality" class="def variant type anchored"><a href="#type-simple.equality" class="anchor"></a><code><span>| </span><span><a href="#type-equality">equality</a></span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for simple intropatterns.</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-other"><a href="#type-other" class="anchor"></a><code><span><span class="keyword">type</span> other</span><span> = </span><span>[ </span></code><ol><li id="type-other.Other" class="def variant constructor anchored"><a href="#type-other.Other" class="anchor"></a><code><span>| </span><span>`Other</span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Tag for other intropatterns.</p></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-any"><a href="#type-any" class="anchor"></a><code><span><span class="keyword">type</span> any</span><span> = </span><span>[ </span></code><ol><li id="type-any.simple" class="def variant type anchored"><a href="#type-any.simple" class="anchor"></a><code><span>| </span><span><a href="#type-simple">simple</a></span></code></li><li id="type-any.other" class="def variant type anchored"><a href="#type-any.other" class="anchor"></a><code><span>| </span><span><a href="#type-other">other</a></span></code></li></ol><code><span> ]</span></code></div><div class="spec-doc"><p>Top tag for all intropatterns.</p><p>Useful in error messages.</p></div></div>
+</div><section id="naming-patterns">
+<h3>Naming patterns<a class="headerlink" href="#naming-patterns" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-name"><a href="#val-name" class="anchor"></a><code><span><span class="keyword">val</span> name : <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-naming">naming</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>name ident</code> uses the specified name.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(??)"><a href="#val-(??)" class="anchor"></a><code><span><span class="keyword">val</span> (??) : <span><span>[&gt; <a href="#type-naming">naming</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>(??)</code> lets Rocq generate a fresh name.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(?:)"><a href="#val-(?:)" class="anchor"></a><code><span><span class="keyword">val</span> (?:) : <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-naming">naming</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>?:ident</code> lets Rocq generate a fresh name that begins with <code>ident</code>.</p></div></div>
+</div></section>
+<section id="splitting-patterns">
+<h3>Splitting patterns<a class="headerlink" href="#splitting-patterns" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-(&amp;)"><a href="#val-(&amp;)" class="anchor"></a><code><span><span class="keyword">val</span> (&amp;) :
+  <span><span><a href="#type-simple">simple</a> <a href="#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span><a href="#type-simple">simple</a> <a href="#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span>[&gt; <a href="#type-or_and">or_and</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>p1 &amp; p2</code> splits a hypothesis of the form <code>A /\ B</code> into <code>p1: A</code> and <code>p2: B</code>. Right-associative.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-and_pattern"><a href="#val-and_pattern" class="anchor"></a><code><span><span class="keyword">val</span> and_pattern : <span><span><span><a href="#type-simple">simple</a> <a href="#type-intropattern">intropattern</a></span> list</span> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-or_and">or_and</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>and_pattern [p₁; …; pₙ]</code> is equivalent to <code>p₁ &amp; … &amp; pₙ</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-or_pattern"><a href="#val-or_pattern" class="anchor"></a><code><span><span class="keyword">val</span> or_pattern : <span><span><span><span><a href="#type-any">any</a> <a href="#type-intropattern">intropattern</a></span> list</span> list</span> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-or_and">or_and</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>or_pattern [[p₁₁; …; p₁ₘ]; …; [pₙ₁; …; pₙₖ]]</code> destructs a hypothesis whose inductive type has <code>n</code> constructors (e.g., <code>A₁ ∨ … ∨ Aₙ</code>) into <code>n</code> subgoals. In the <code>i</code>-th subgoal, the arguments of the <code>i</code>-th constructor are named by the patterns of the <code>i</code>-th inner list. Corresponds to <code>[p₁₁ … p₁ₘ | … | pₙ₁ … pₙₖ]</code> in Ltac.</p></div></div>
+</div></section>
+<section id="equality-patterns">
+<h3>Equality patterns<a class="headerlink" href="#equality-patterns" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<p>These patterns can be used when the hypothesis is an equality.</p><div class="odoc-spec"><div class="spec value anchored" id="val-(--&gt;)"><a href="#val-(--&gt;)" class="anchor"></a><code><span><span class="keyword">val</span> (--&gt;) : <span><span>[&gt; <a href="#type-orientation">orientation</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Replaces the LHS of the hypothesis with the RHS in the conclusion of the goal.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(&lt;--)"><a href="#val-(&lt;--)" class="anchor"></a><code><span><span class="keyword">val</span> (&lt;--) : <span><span>[&gt; <a href="#type-orientation">orientation</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Replaces the RHS of the hypothesis with the LHS in the conclusion of the goal.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(@=)"><a href="#val-(@=)" class="anchor"></a><code><span><span class="keyword">val</span> (@=) : <span><span><span><a href="#type-any">any</a> <a href="#type-intropattern">intropattern</a></span> list</span> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-equality">equality</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Applies either <a href="Ltac2.Std.html#val-injection"><code>Std.injection</code></a> or <a href="Ltac2.Std.html#val-discriminate"><code>Std.discriminate</code></a>.</p></div></div>
+</div></section>
+<section id="other-patterns">
+<h3>Other patterns<a class="headerlink" href="#other-patterns" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec value anchored" id="val-__"><a href="#val-__" class="anchor"></a><code><span><span class="keyword">val</span> __ : <span><span>[&gt; <a href="#type-simple">simple</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Wildcard intropattern that discards the matched pattern (unless it is required by another hypothesis).</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(@*)"><a href="#val-(@*)" class="anchor"></a><code><span><span class="keyword">val</span> (@*) : <span><span>[&gt; <a href="#type-other">other</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Introduces one or more dependent premises from the result until there are no more.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(@**)"><a href="#val-(@**)" class="anchor"></a><code><span><span class="keyword">val</span> (@**) : <span><span>[&gt; <a href="#type-other">other</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p>Introduces one or more dependent or non-dependent premises from the result until there are no more premises.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(%)"><a href="#val-(%)" class="anchor"></a><code><span><span class="keyword">val</span> (%) : <span><span><a href="#type-simple">simple</a> <a href="#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <span><span>[&gt; <a href="#type-simple">simple</a> ]</span> <a href="#type-intropattern">intropattern</a></span></span></code></div><div class="spec-doc"><p><code>pattern%term</code> first applies <code>term</code> with the <a href="Ltac2.Std.html#val-apply"><code>Std.apply</code></a> tactic on the hypothesis to be introduced, then it uses <code>pattern</code>.</p></div></div>
+</div></section>
+</section>
+<section id="occurrences">
+<h2>Occurrences<a class="headerlink" href="#occurrences" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-occurrences"><a href="#type-occurrences" class="anchor"></a><code><span><span class="keyword">type</span> <span>_ occurrences</span></span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>An occurrence is a subterm of a goal or hypothesis that matches a pattern.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-At"><a href="#extension-decl-At" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-occurrences">occurrences</a> += </span></code><ol><li id="extension-At" class="def variant extension anchored"><a href="#extension-At" class="anchor"></a><code><span>| </span><span><span class="extension">At</span> : <span><span class="type-var">'a</span> list</span> <span class="arrow">&#45;&gt;</span> <span><span class="type-var">'a</span> <a href="#type-occurrences">occurrences</a></span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>At l</code> selects the specified occurrences.</p><span class="comment-delim">*)</span></div></li><li id="extension-Everywhere" class="def variant extension anchored"><a href="#extension-Everywhere" class="anchor"></a><code><span>| </span><span><span class="extension">Everywhere</span> : <span><span class="type-var">'a</span> <a href="#type-occurrences">occurrences</a></span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Everywhere</code> selects every occurrence (similar to Ltac's <code>*</code>).</p><span class="comment-delim">*)</span></div></li><li id="extension-Everywhere_but" class="def variant extension anchored"><a href="#extension-Everywhere_but" class="anchor"></a><code><span>| </span><span><span class="extension">Everywhere_but</span> : <span>int list</span> <span class="arrow">&#45;&gt;</span> <span>int <a href="#type-occurrences">occurrences</a></span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Everywhere_but l</code> selects every occurrence that is not in <code>l</code> (similar to Ltac's <code>at -l</code>).</p><span class="comment-delim">*)</span></div></li><li id="extension-Nowhere" class="def variant extension anchored"><a href="#extension-Nowhere" class="anchor"></a><code><span>| </span><span><span class="extension">Nowhere</span> : <span><span class="type-var">'a</span> <a href="#type-occurrences">occurrences</a></span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Nowhere</code> selects no occurrence.</p><span class="comment-delim">*)</span></div></li></ol></div></div>
+</div></section>
+<section id="clauses">
+<h2>Clauses<a class="headerlink" href="#clauses" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-hypothesis_selector"><a href="#type-hypothesis_selector" class="anchor"></a><code><span><span class="keyword">type</span> hypothesis_selector</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Selects whether an occurrence should apply to the type or value of the hypothesis.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-Hyp"><a href="#extension-decl-Hyp" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-hypothesis_selector">hypothesis_selector</a> += </span></code><ol><li id="extension-Hyp" class="def variant extension anchored"><a href="#extension-Hyp" class="anchor"></a><code><span>| </span><span><span class="extension">Hyp</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Applies to the whole hypothesis.</p><span class="comment-delim">*)</span></div></li><li id="extension-Type_of" class="def variant extension anchored"><a href="#extension-Type_of" class="anchor"></a><code><span>| </span><span><span class="extension">Type_of</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Selects the type part of the hypothesis.</p><span class="comment-delim">*)</span></div></li><li id="extension-Value_of" class="def variant extension anchored"><a href="#extension-Value_of" class="anchor"></a><code><span>| </span><span><span class="extension">Value_of</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Selects the value part of the hypothesis.</p><span class="comment-delim">*)</span></div></li></ol></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-clause"><a href="#type-clause" class="anchor"></a><code><span><span class="keyword">type</span> clause</span></code></div><div class="spec-doc"><p>A clause selects a subset of occurrences in the hypothesis and the goal.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(|-)"><a href="#val-(|-)" class="anchor"></a><code><span><span class="keyword">val</span> (|-) :
+  <span><span><span>(<a href="#type-hypothesis_selector">hypothesis_selector</a> * <span>int <a href="#type-occurrences">occurrences</a></span>)</span> <a href="#type-occurrences">occurrences</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <span><span>int <a href="#type-occurrences">occurrences</a></span> <span class="arrow">&#45;&gt;</span></span>
+  <a href="#type-clause">clause</a></span></code></div><div class="spec-doc"><p><code>hyps_occs |- goal_occs</code> creates a clause that selects occurrences in the hypotheses according to <code>hyps_occs</code>, and occurrences in the goal according to <code>goal_occs</code>.</p><p>Examples:</p><ul><li><code>Everywhere |- Everywhere</code> corresponds to <code>* |- *</code>.</li><li><code>Nowhere |- Everywhere</code> corresponds to <code>|- *</code>.</li><li><code>Nowhere |- Nowhere</code> corresponds to <code>|-</code>.</li><li><code>At [(Type_of h, Everywhere)] |- (At [1; 2])</code> corresponds to <code>(type of h) |- * at 1 2</code>.</li></ul></div></div>
+</div></section>
+<section id="move-locations">
+<h2>Move locations<a class="headerlink" href="#move-locations" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-move_location"><a href="#type-move_location" class="anchor"></a><code><span><span class="keyword">type</span> move_location</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Specifies where to move a hypothesis for the <a href="Ltac2.Std.html#val-move"><code>Std.move</code></a> tactic.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-At_top"><a href="#extension-decl-At_top" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-move_location">move_location</a> += </span></code><ol><li id="extension-At_top" class="def variant extension anchored"><a href="#extension-At_top" class="anchor"></a><code><span>| </span><span><span class="extension">At_top</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>at top</code></p><span class="comment-delim">*)</span></div></li><li id="extension-At_bottom" class="def variant extension anchored"><a href="#extension-At_bottom" class="anchor"></a><code><span>| </span><span><span class="extension">At_bottom</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>at bottom</code></p><span class="comment-delim">*)</span></div></li><li id="extension-Before" class="def variant extension anchored"><a href="#extension-Before" class="anchor"></a><code><span>| </span><span><span class="extension">Before</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>before h</code></p><span class="comment-delim">*)</span></div></li><li id="extension-After" class="def variant extension anchored"><a href="#extension-After" class="anchor"></a><code><span>| </span><span><span class="extension">After</span> <span class="keyword">of</span> <a href="../ltac2-apis.html#type-ident">ident</a></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>after h</code></p><span class="comment-delim">*)</span></div></li></ol></div></div>
+</div></section>
+<section id="inversion-kinds">
+<h2>Inversion kinds<a class="headerlink" href="#inversion-kinds" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-inversion_kind"><a href="#type-inversion_kind" class="anchor"></a><code><span><span class="keyword">type</span> inversion_kind</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Type of inversion performed.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-Simple"><a href="#extension-decl-Simple" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-inversion_kind">inversion_kind</a> += </span></code><ol><li id="extension-Simple" class="def variant extension anchored"><a href="#extension-Simple" class="anchor"></a><code><span>| </span><span><span class="extension">Simple</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Behaves like Ltac's <code>simple inversion</code>.</p><span class="comment-delim">*)</span></div></li><li id="extension-Full" class="def variant extension anchored"><a href="#extension-Full" class="anchor"></a><code><span>| </span><span><span class="extension">Full</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Behaves like Ltac's <code>inversion</code>.</p><span class="comment-delim">*)</span></div></li><li id="extension-Full_clear" class="def variant extension anchored"><a href="#extension-Full_clear" class="anchor"></a><code><span>| </span><span><span class="extension">Full_clear</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p>Behaves like Ltac's <code>inversion_clear</code>.</p><span class="comment-delim">*)</span></div></li></ol></div></div>
+</div></section>
+<section id="rewrites">
+<h2>Rewrites<a class="headerlink" href="#rewrites" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-multiplicity"><a href="#type-multiplicity" class="anchor"></a><code><span><span class="keyword">type</span> multiplicity</span><span> = <span class="keyword">private</span> </span><span>..</span></code></div><div class="spec-doc"><p>Specifies the number of rewrites to perform.</p></div></div><div class="odoc-spec"><div class="spec type extension anchored" id="extension-decl-Exactly"><a href="#extension-decl-Exactly" class="anchor"></a><code><span><span class="keyword">type</span> <a href="#type-multiplicity">multiplicity</a> += </span></code><ol><li id="extension-Exactly" class="def variant extension anchored"><a href="#extension-Exactly" class="anchor"></a><code><span>| </span><span><span class="extension">Exactly</span> <span class="keyword">of</span> int</span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Exactly n</code> performs a rewrite exactly <code>n</code> times.</p><span class="comment-delim">*)</span></div></li><li id="extension-At_most" class="def variant extension anchored"><a href="#extension-At_most" class="anchor"></a><code><span>| </span><span><span class="extension">At_most</span> <span class="keyword">of</span> int</span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>At_most n</code> performs a rewrite at most <code>n</code> times (<code>?n</code> in Ltac).</p><span class="comment-delim">*)</span></div></li><li id="extension-Star" class="def variant extension anchored"><a href="#extension-Star" class="anchor"></a><code><span>| </span><span><span class="extension">Star</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Star</code> performs a rewrite as many times as possible, possibly zero.</p><span class="comment-delim">*)</span></div></li><li id="extension-Plus" class="def variant extension anchored"><a href="#extension-Plus" class="anchor"></a><code><span>| </span><span><span class="extension">Plus</span></span></code><div class="def-doc"><span class="comment-delim">(*</span><p><code>Plus</code> performs a rewrite as many times as possible and at least once.</p><span class="comment-delim">*)</span></div></li></ol></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-oriented_rewriter"><a href="#type-oriented_rewriter" class="anchor"></a><code><span><span class="keyword">type</span> oriented_rewriter</span></code></div><div class="spec-doc"><p>Type of rewriters for the <a href="Ltac2.Std.html#val-rewrite"><code>Std.rewrite</code></a> tactic.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(==&gt;)"><a href="#val-(==&gt;)" class="anchor"></a><code><span><span class="keyword">val</span> (==&gt;) : <span><span class="optlabel">?n</span>:<a href="#type-multiplicity">multiplicity</a> <span class="arrow">&#45;&gt;</span></span> <span><span class="optlabel">?with_</span>:<a href="#type-bindings">bindings</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-oriented_rewriter">oriented_rewriter</a></span></code></div><div class="spec-doc"><p><code>(==&gt;) ?n e ?with_</code> rewrites using equality or equivalence <code>e</code>, of the form <code>forall …, term₁ = term₂</code> or <code>forall …, term₁ EQ term₂</code> for some equivalence relation <code>EQ</code>, by replacing <code>term₁</code> with <code>term₂</code>.</p><ul class="at-tags"><li class="parameter"><span class="at-tag">parameter</span> <span class="value">n</span> <span class="param-default">default: <code>Exactly 1</code></span> <p>Number of rewrites to perform.</p></li></ul><ul class="at-tags"><li class="parameter"><span class="at-tag">parameter</span> <span class="value">with_</span> <span class="param-default">default: <code>bindings.No_bindings</code></span> <p>Bindings to use.</p></li></ul></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-(&lt;==)"><a href="#val-(&lt;==)" class="anchor"></a><code><span><span class="keyword">val</span> (&lt;==) : <span><span class="optlabel">?n</span>:<a href="#type-multiplicity">multiplicity</a> <span class="arrow">&#45;&gt;</span></span> <span><span class="optlabel">?with_</span>:<a href="#type-bindings">bindings</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-oriented_rewriter">oriented_rewriter</a></span></code></div><div class="spec-doc"><p><code>(&lt;==) ?n e ?with_</code> rewrites using equality or equivalence <code>e</code>, of the form <code>forall …, term₁ = term₂</code> or <code>forall …, term₁ EQ term₂</code> for some equivalence relation <code>EQ</code>, by replacing <code>term₂</code> with <code>term₁</code>.</p><ul class="at-tags"><li class="parameter"><span class="at-tag">parameter</span> <span class="value">n</span> <span class="param-default">default: <code>Exactly 1</code></span> <p>Number of rewrites to perform.</p></li></ul><ul class="at-tags"><li class="parameter"><span class="at-tag">parameter</span> <span class="value">with_</span> <span class="param-default">default: <code>bindings.No_bindings</code></span> <p>Bindings to use.</p></li></ul></div></div>
+</div></section>
+<section id="induction-clauses">
+<h2>Induction clauses<a class="headerlink" href="#induction-clauses" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<ul class="at-tags"><li class="see"><span class="at-tag">see</span> <a href="https://rocq-prover.org/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#case-analysis">Reference manual, &quot;Case analysis&quot;</a></li></ul><div class="odoc-spec"><div class="spec module anchored" id="module-Induction_arg"><a href="#module-Induction_arg" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Syntax.Induction_arg.html">Induction_arg</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Induction_clause"><a href="#module-Induction_clause" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Syntax.Induction_clause.html">Induction_clause</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="Ltac2.Std.Red.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title"><code class="docutils literal notranslate"><span class="pre">Red</span></code></div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="Ltac2.Syntax.Induction_arg.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title"><code class="docutils literal notranslate"><span class="pre">Induction_arg</span></code></div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Dario Halilovic (<a href="https://systemf.epfl.ch">SYSTEMF @ EPFL</a>)</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/suggestions-data.js"></script>
+      <script src="../../_static/search-suggest.js?v=88205e4c"></script>
+      <script src="../../_static/alectryon.js?v=fa737423"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

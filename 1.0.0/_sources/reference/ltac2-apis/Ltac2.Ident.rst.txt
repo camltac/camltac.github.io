@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Ident:
+
+``Ident``
+=========
+
+.. rst-class:: module-path
+
+``Ltac2.Ident``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span><span> = <a href="../ltac2-apis.html#type-ident">ident</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-equal"><a href="#val-equal" class="anchor"></a><code><span><span class="keyword">val</span> equal : <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>equal id1 id2</code> tests equality of identifiers.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-to_string"><a href="#val-to_string" class="anchor"></a><code><span><span class="keyword">val</span> to_string : <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> string</span></code></div><div class="spec-doc"><p><code>to_string id</code> converts the identifier to a string.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-of_string"><a href="#val-of_string" class="anchor"></a><code><span><span class="keyword">val</span> of_string : <span>string <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-ident">ident</a> option</span></span></code></div><div class="spec-doc"><p><code>of_string s</code> converts the string to an identifier, returning <code>None</code> if the string contains invalid characters.</p></div></div>
+   </div>

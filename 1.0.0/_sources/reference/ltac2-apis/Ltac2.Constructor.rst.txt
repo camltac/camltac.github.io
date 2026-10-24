@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Constructor:
+
+``Constructor``
+===============
+
+.. rst-class:: module-path
+
+``Ltac2.Constructor``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span><span> = <a href="../ltac2-apis.html#type-constructor">constructor</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-equal"><a href="#val-equal" class="anchor"></a><code><span><span class="keyword">val</span> equal : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>equal c1 c2</code> tests equality of constructors. Constructors obtained through module aliases or Include are not considered equal by this function.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-inductive"><a href="#val-inductive" class="anchor"></a><code><span><span class="keyword">val</span> inductive : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-inductive">inductive</a></span></code></div><div class="spec-doc"><p><code>inductive constructor</code> returns the inductive to which <code>constructor</code> belongs.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-index"><a href="#val-index" class="anchor"></a><code><span><span class="keyword">val</span> index : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> int</span></code></div><div class="spec-doc"><p><code>index constructor</code> returns the index of the given constructor (such that <code>c</code> is <code>Ind.get_constructor (Ind.data (inductive c)) (index c)</code>).</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-print"><a href="#val-print" class="anchor"></a><code><span><span class="keyword">val</span> print : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-message">message</a></span></code></div><div class="spec-doc"><p><code>print constructor</code> prints the constructor using the shortest qualified identifier which refers to it. Does not avoid variable names in the current or global environment.</p></div></div>
+   </div>

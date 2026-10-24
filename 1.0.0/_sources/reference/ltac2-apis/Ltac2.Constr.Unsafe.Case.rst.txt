@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Constr.Unsafe.Case:
+
+``Case``
+========
+
+.. rst-class:: module-path
+
+``Ltac2.Constr.Unsafe.Case``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec value anchored" id="val-equal"><a href="#val-equal" class="anchor"></a><code><span><span class="keyword">val</span> equal : <span><a href="Ltac2.Constr.Unsafe.html#type-case">case</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="Ltac2.Constr.Unsafe.html#type-case">case</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>equal case1 case2</code> checks equality of the inductive components of the case info. When comparing the inductives, those obtained through module aliases or <code>Include</code> are not considered equal by this function.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-inductive"><a href="#val-inductive" class="anchor"></a><code><span><span class="keyword">val</span> inductive : <span><a href="Ltac2.Constr.Unsafe.html#type-case">case</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-inductive">inductive</a></span></code></div><div class="spec-doc"><p><code>inductive case</code> returns the inductive type being matched on in a pattern match expression.</p></div></div>
+   </div>

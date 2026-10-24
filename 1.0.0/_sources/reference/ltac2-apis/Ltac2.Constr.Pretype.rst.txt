@@ -1,0 +1,25 @@
+.. _mltac2-api-Ltac2.Constr.Pretype:
+
+``Pretype``
+===========
+
+.. rst-class:: module-path
+
+``Ltac2.Constr.Pretype``
+
+.. toctree::
+   :hidden:
+
+   Ltac2.Constr.Pretype.Flags
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-expected_type"><a href="#type-expected_type" class="anchor"></a><code><span><span class="keyword">type</span> expected_type</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Pretyping/index.html#type-typing_constraint">Pretyping.typing_constraint</a></span></code></div><div class="spec-doc"><p>Typing constraints for pretyping.</p></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Flags"><a href="#module-Flags" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Pretype.Flags.html">Flags</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-expected_istype"><a href="#val-expected_istype" class="anchor"></a><code><span><span class="keyword">val</span> expected_istype : <a href="#type-expected_type">expected_type</a></span></code></div><div class="spec-doc"><p>Pretyping constraint for terms expected to be types.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-expected_oftype"><a href="#val-expected_oftype" class="anchor"></a><code><span><span class="keyword">val</span> expected_oftype : <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-expected_type">expected_type</a></span></code></div><div class="spec-doc"><p>Pretyping constraint for terms expected to have a specific type.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-expected_without_type_constraint"><a href="#val-expected_without_type_constraint" class="anchor"></a><code><span><span class="keyword">val</span> expected_without_type_constraint : <a href="#type-expected_type">expected_type</a></span></code></div><div class="spec-doc"><p>No pretyping constraint.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-pretype"><a href="#val-pretype" class="anchor"></a><code><span><span class="keyword">val</span> pretype : 
+     <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="Ltac2.Constr.Pretype.Flags.html#type-t">Flags.t</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="#type-expected_type">expected_type</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="../ltac2-apis.html#type-preterm">preterm</a> <span class="arrow">&#45;&gt;</span></span>
+     <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> * <a href="../ltac2-apis.html#type-constr">constr</a></span></code></div><div class="spec-doc"><p><code>pretype env sigma flags type_constraint preterm</code> pretypes the given <code>preterm</code> using the pretyping flags and expected type constraint.</p></div></div>
+   </div>

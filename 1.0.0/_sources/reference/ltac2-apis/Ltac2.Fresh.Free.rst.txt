@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Fresh.Free:
+
+``Free``
+========
+
+.. rst-class:: module-path
+
+``Ltac2.Fresh.Free``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span></code></div><div class="spec-doc"><p>Type of sets of free variables.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-empty"><a href="#val-empty" class="anchor"></a><code><span><span class="keyword">val</span> empty : <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p>Empty set of free variables.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-add"><a href="#val-add" class="anchor"></a><code><span><span class="keyword">val</span> add : <span><a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>add id s</code> adds the given identifier to the set of free variables <code>s</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-union"><a href="#val-union" class="anchor"></a><code><span><span class="keyword">val</span> union : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>union s1 s2</code> merges the two sets of free variables.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-of_ids"><a href="#val-of_ids" class="anchor"></a><code><span><span class="keyword">val</span> of_ids : <span><span><a href="../ltac2-apis.html#type-ident">ident</a> list</span> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>of_ids ids</code> creates a set of free variables from the given list of identifiers.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-of_constr"><a href="#val-of_constr" class="anchor"></a><code><span><span class="keyword">val</span> of_constr : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="../ltac2-apis.html#type-constr">constr</a> <span class="arrow">&#45;&gt;</span></span> <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>of_constr sigma t</code> collects all free variables of <code>t</code> as a set.</p></div></div>
+   </div>

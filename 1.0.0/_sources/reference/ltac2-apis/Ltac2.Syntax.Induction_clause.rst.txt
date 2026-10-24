@@ -1,0 +1,24 @@
+.. _mltac2-api-Ltac2.Syntax.Induction_clause:
+
+``Induction_clause``
+====================
+
+.. rst-class:: module-path
+
+``Ltac2.Syntax.Induction_clause``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span></code></div><div class="spec-doc"><ul class="at-tags"><li class="see"><span class="at-tag">see</span> <a href="https://rocq-prover.org/doc/master/refman/proofs/writing-proofs/reasoning-inductives.html#grammar-token-induction_clause">Reference manual, induction_clause</a></li></ul></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-on_constr"><a href="#val-on_constr" class="anchor"></a><code><span><span class="keyword">val</span> on_constr : 
+     <span><span class="optlabel">?as_pattern</span>:<span><a href="Ltac2.Syntax.html#type-or_and">or_and</a> <a href="Ltac2.Syntax.html#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+     <span><span class="optlabel">?eqn</span>:<span><a href="Ltac2.Syntax.html#type-naming">naming</a> <a href="Ltac2.Syntax.html#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+     <span><span class="optlabel">?where</span>:<a href="Ltac2.Syntax.html#type-clause">clause</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="Ltac2.Syntax.html#type-constr_with_bindings">constr_with_bindings</a> <span class="arrow">&#45;&gt;</span></span>
+     <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>on_constr t ?as_pattern ?eqn ?where</code> builds an induction clause that performs induction on <code>t</code>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-on_hyp"><a href="#val-on_hyp" class="anchor"></a><code><span><span class="keyword">val</span> on_hyp : 
+     <span><span class="optlabel">?as_pattern</span>:<span><a href="Ltac2.Syntax.html#type-or_and">or_and</a> <a href="Ltac2.Syntax.html#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+     <span><span class="optlabel">?eqn</span>:<span><a href="Ltac2.Syntax.html#type-naming">naming</a> <a href="Ltac2.Syntax.html#type-intropattern">intropattern</a></span> <span class="arrow">&#45;&gt;</span></span>
+     <span><span class="optlabel">?where</span>:<a href="Ltac2.Syntax.html#type-clause">clause</a> <span class="arrow">&#45;&gt;</span></span>
+     <span><a href="Ltac2.Syntax.html#type-hypothesis">hypothesis</a> <span class="arrow">&#45;&gt;</span></span>
+     <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>on_hyp h ?as_pattern ?eqn ?where</code> builds an induction clause that performs induction on hypothesis <code>h</code>.</p></div></div>
+   </div>

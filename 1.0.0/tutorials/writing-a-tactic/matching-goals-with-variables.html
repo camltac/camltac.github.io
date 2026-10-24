@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Matching goals with variables - Camltac documentation</title><link rel="index" title="Index" href="../../genindex.html" /><link rel="search" title="Search" href="../../search.html" /><link rel="next" title="Importing the tactic in other files" href="importing-the-tactic-in-other-files.html" /><link rel="prev" title="Searching for exact matches" href="searching-for-exact-matches.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=75453710" />
+    <link rel="stylesheet" type="text/css" href="../../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" />
+    <link rel="stylesheet" type="text/css" href="../../_static/rocq-notations.css?v=07fd7624" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mltac2-api.css?v=fe83dc6f" />
+    <link rel="stylesheet" type="text/css" href="../../_static/search-suggest.css?v=581cb6e6" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon.css?v=90b20a3a" />
+    <link media="print" rel="stylesheet" type="text/css" href="../../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alectryon-dark.css?v=403f2018" />
+    <link rel="stylesheet" type="text/css" href="../../_static/hlist.css?v=e3c1df49" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sidebar.css?v=3b2e7588" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Matching goals with variables"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../../index.html">
+      
+      
+      <strong>Camltac</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting-started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tour/index.html">A tour of Camltac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/running-ocaml-code.html">Running OCaml code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/defining-new-tactics.html">Defining new tactics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/antiquotations.html">Antiquotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-terms.html">Pattern matching over terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/pattern-matching-over-goals.html">Pattern matching over goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/ocaml-libraries-and-preprocessors.html">Using OCaml libraries and preprocessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/interoperability-with-ltac2.html">Interoperability with Ltac2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/rocq-apis.html">Using internal Rocq APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tour/end.html">Going further</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Writing a tactic with Camltac</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="setting-up-a-camltac-project.html">Setting up a Camltac project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="searching-for-exact-matches.html">Searching for exact matches</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Matching goals with variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="importing-the-tactic-in-other-files.html">Importing the tactic in other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="using-the-tactic-from-ltac2.html">Using the tactic from Ltac2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../how-tos/index.html">How-to guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-dune.html">How to use Camltac with Dune</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/setup-your-makefile.html">How to use Camltac with Makefiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../how-tos/configure-your-editor.html">How to configure your editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/commands/index.html">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/commands/Run.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Run</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/commands/Module.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Module</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/commands/Load.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Load</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/commands/Eval.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Eval</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/commands/Check.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Check</span></span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/pattern-matching.html">Pattern matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/ltac2-comparison.html">Comparison with Ltac2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/ltac2-apis.html">Ltac2 APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constant.html"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.html"><code class="docutils literal notranslate"><span class="pre">Constr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.Binder.html"><code class="docutils literal notranslate"><span class="pre">Binder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.Cast.html"><code class="docutils literal notranslate"><span class="pre">Cast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.Pretype.html"><code class="docutils literal notranslate"><span class="pre">Pretype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.Relevance.html"><code class="docutils literal notranslate"><span class="pre">Relevance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constr.Unsafe.html"><code class="docutils literal notranslate"><span class="pre">Unsafe</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Constructor.html"><code class="docutils literal notranslate"><span class="pre">Constructor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Control.html"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Env.html"><code class="docutils literal notranslate"><span class="pre">Env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Fresh.html"><code class="docutils literal notranslate"><span class="pre">Fresh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Fresh.Free.html"><code class="docutils literal notranslate"><span class="pre">Free</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Ident.html"><code class="docutils literal notranslate"><span class="pre">Ident</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Ind.html"><code class="docutils literal notranslate"><span class="pre">Ind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Message.html"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Module.html"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Module.Field.html"><code class="docutils literal notranslate"><span class="pre">Field</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Pattern.html"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Proj.html"><code class="docutils literal notranslate"><span class="pre">Proj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Rewrite.html"><code class="docutils literal notranslate"><span class="pre">Rewrite</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Rewrite.Strategy.html"><code class="docutils literal notranslate"><span class="pre">Strategy</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Scheme.html"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Std.html"><code class="docutils literal notranslate"><span class="pre">Std</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Std.Red.html"><code class="docutils literal notranslate"><span class="pre">Red</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Syntax.html"><code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Syntax.Induction_arg.html"><code class="docutils literal notranslate"><span class="pre">Induction_arg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Syntax.Induction_clause.html"><code class="docutils literal notranslate"><span class="pre">Induction_clause</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.TransparentState.html"><code class="docutils literal notranslate"><span class="pre">TransparentState</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ltac2-apis/Ltac2.Unification.html"><code class="docutils literal notranslate"><span class="pre">Unification</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../explanation/index.html">Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/why-camltac.html">Why Camltac?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../explanation/execution-model/index.html">Camltac’s execution model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/parsing.html">Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/build-directives.html">Build directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/compilation.html">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/dynamic-linking.html">Dynamic linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../explanation/execution-model/runtime.html">Camltac’s runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../advanced-topics/index.html">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../advanced-topics/rocq-apis.html">Using Rocq’s internal APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Additional links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coq-workshop.gitlab.io/2026/files/EA6.pdf">Rocqshop 2026</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://infoscience.epfl.ch/entities/publication/926430ae-7511-4498-bb12-5c8cf559ec33">Master's thesis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#turning-variables-into-evars">Turning variables into evars</a></li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../../index.html"><span itemprop="name">Camltac</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Tutorials</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Writing a tactic with Camltac</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="3" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Matching goals with variables</strong>
+        <meta itemprop="position" content="4" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="matching-goals-with-variables">
+<h1>Matching goals with variables<a class="headerlink" href="#matching-goals-with-variables" title="Link to this heading">#</a></h1>
+<p>Our first version works great when the conclusion matches exactly the shape of a lemma, but it doesn’t generalize well in the presence of variables. For example, if we introduced variables before running <code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">ApplySearch.run</span></span> <span class="bp"><span class="pre">()</span></span></code>, we would not find anything, despite the lemma still applying:</p>
+<pre class="alectryon-io highlight lang-rocq"><!-- Generator: Alectryon --><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk0" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk0"><span class="kn">From</span> Stdlib <span class="kn">Require</span> List.</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">Use of “<span class="kn">Require</span>” <span class="kn">inside</span> a module <span class="k">is</span> fragile. It <span class="k">is</span> not recommended to use
+this functionality <span class="k">in</span> finished proof scripts.
+[require-<span class="k">in</span>-module,fragile,default]</blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Open Scope</span> list_scope.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-txt">
+</span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk1" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk1"><span class="kn">Goal</span> <span class="k">forall</span> <span class="nv">A</span> (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A),
+  x ++ y = x ++ z -&gt; y = z.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><span class="goal-separator"><hr></span><div class="goal-conclusion"><span class="k">forall</span> (<span class="nv">A</span> : <span class="kt">Type</span>) (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A), x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk2" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk2"><span class="kn">Proof</span>.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><span class="goal-separator"><hr></span><div class="goal-conclusion"><span class="k">forall</span> (<span class="nv">A</span> : <span class="kt">Type</span>) (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A), x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk3" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk3"><span class="nb">intros</span> A x y z. <span class="c">(* ← We added this line. *)</span></label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Type</span></span></span></span><br><span><var>x, y, z</var><span class="hyp-type"><b>: </b><span>list A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-txt">
+  <span class="c">(* Now our tactic fails: *)</span>
+</span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="matching-goals-with-variables-rst-chk4" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk4">Camltac <span class="kn">Eval</span> <span class="k">ocaml</span>:(<span class="nn">ApplySearch</span><span class="p">.</span>run ()).</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">No theorem could be applied.</blockquote><blockquote class="alectryon-message">- : unit = ()</blockquote></div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Type</span></span></span></span><br><span><var>x, y, z</var><span class="hyp-type"><b>: </b><span>list A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-txt">
+  <span class="c">(* Stuck. :( *)</span>
+</span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Abort</span>.</span></span></pre><p>To fix this issue, we’ll replace our variables with <em>existential variables</em> (<em>evars</em> in short), which are converted to pattern variables by <a class="api-link reference external" href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Patternops/index.html#val-pattern_of_constr"><code class="docutils literal notranslate"><span class="pre">Patternops.pattern_of_constr</span></code></a>.</p>
+<section id="turning-variables-into-evars">
+<h2>Turning variables into evars<a class="headerlink" href="#turning-variables-into-evars" title="Link to this heading">#</a></h2>
+<p>We introduce a new function, <code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">create_pattern</span></span></code>, that creates the pattern by replacing every variable with a fresh evar:</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">Tutorial.v</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-coq notranslate"><div class="highlight"><pre><span></span><span data-line="19"><span class="linenos">19</span><span class="c">(* … *)</span>
+</span><span data-line="20"><span class="linenos">20</span><span class="k">let</span> <span class="n">run</span> <span class="bp">()</span> <span class="o">=</span>
+</span><span data-line="21"><span class="linenos">21</span>  <span class="k">match</span><span class="o">%</span><span class="n">rocq</span> <span class="n">goal</span> <span class="k">with</span>
+</span><span data-line="22"><span class="linenos">22</span>  <span class="o">|</span> <span class="o">_,</span> <span class="o">{|</span> <span class="o">?</span><span class="n">conclusion</span> <span class="o">|}</span> <span class="o">-&gt;</span>
+</span><span data-line="23"><span class="linenos">23</span>    <span class="k">let</span><span class="o">*</span> <span class="n">env</span> <span class="o">=</span> <span class="n">Tactic.env</span> <span class="k">in</span>
+</span><span data-line="24"><span class="linenos">24</span>    <span class="k">let</span><span class="o">*</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">Tactic.sigma</span> <span class="k">in</span>
+</span><span data-line="25"><span class="hll"><span class="linenos">25</span>    <span class="k">let</span> <span class="k">pattern</span> <span class="o">=</span> <span class="n">create_pattern</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">conclusion</span> <span class="k">in</span>
+</span></span><span data-line="26"><span class="linenos">26</span>    <span class="n">print_results</span> <span class="o">(</span><span class="n">search</span> <span class="n">env</span> <span class="n">sigma</span> <span class="k">pattern</span><span class="o">);</span>
+</span><span data-line="27"><span class="linenos">27</span>    <span class="k">return</span> <span class="bp">()</span>
+</span></pre></div>
+</div>
+</div>
+<p>The <code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">create_pattern</span></span></code> method looks as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Tutorial.v</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-coq notranslate"><div class="highlight"><pre><span></span><span data-line="4"><span class="linenos"> 4</span><span class="k">let</span> <span class="n">create_pattern</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">t</span> <span class="o">=</span>
+</span><span data-line="5"><span class="linenos"> 5</span>  <span class="k">let</span> <span class="n">new_evar_for</span> <span class="n">var</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="n">mappings</span><span class="o">)</span> <span class="o">=</span>
+</span><span data-line="6"><span class="linenos"> 6</span>    <span class="k">let</span> <span class="n">typ</span> <span class="o">=</span> <span class="n">EConstr.of_constr</span> <span class="o">(</span><span class="n">Environ.named_type</span> <span class="n">var</span> <span class="n">env</span><span class="o">)</span> <span class="k">in</span>
+</span><span data-line="7"><span class="linenos"> 7</span>    <span class="k">let</span> <span class="n">sigma</span><span class="o">,</span> <span class="n">evar</span> <span class="o">=</span> <span class="n">Evarutil.new_evar</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">typ</span>
+</span><span data-line="8"><span class="linenos"> 8</span>      <span class="o">~</span><span class="n">src</span><span class="o">:(</span><span class="n">None</span><span class="o">,</span> <span class="n">Evar_kinds.MatchingVar</span> <span class="o">(</span><span class="n">Evar_kinds.FirstOrderPatVar</span> <span class="n">var</span><span class="o">))</span>
+</span><span data-line="9"><span class="linenos"> 9</span>      <span class="o">~</span><span class="n">naming</span><span class="o">:(</span><span class="n">IntroIdentifier</span> <span class="n">var</span><span class="o">)</span>
+</span><span data-line="10"><span class="linenos">10</span>    <span class="k">in</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="o">(</span><span class="n">var</span><span class="o">,</span> <span class="n">evar</span><span class="o">)</span> <span class="o">::</span> <span class="n">mappings</span><span class="o">)</span>
+</span><span data-line="11"><span class="linenos">11</span>  <span class="k">in</span>
+</span><span data-line="12"><span class="linenos">12</span>  <span class="k">let</span> <span class="n">vars</span> <span class="o">=</span> <span class="n">Termops.collect_vars</span> <span class="n">sigma</span> <span class="n">t</span> <span class="k">in</span>
+</span><span data-line="13"><span class="linenos">13</span>  <span class="k">let</span> <span class="n">sigma</span><span class="o">,</span> <span class="n">mappings</span> <span class="o">=</span> <span class="n">Names.Id.Set.fold</span> <span class="n">new_evar_for</span> <span class="n">vars</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="k">in</span>
+</span><span data-line="14"><span class="linenos">14</span>  <span class="n">Patternops.pattern_of_constr</span> <span class="n">env</span> <span class="n">sigma</span>
+</span><span data-line="15"><span class="linenos">15</span>    <span class="o">(</span><span class="n">EConstr.Vars.replace_vars</span> <span class="n">sigma</span> <span class="n">mappings</span> <span class="n">t</span><span class="o">)</span>
+</span><span data-line="16"><span class="linenos">16</span>
+</span><span data-line="17"><span class="linenos">17</span><span class="c">(* … *)</span>
+</span></pre></div>
+</div>
+</div>
+<p>We use several low-level functions from Rocq APIs:</p>
+<ul class="simple">
+<li><p><a class="api-link reference external" href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evarutil/index.html#val-new_evar"><code class="docutils literal notranslate"><span class="pre">Evarutil.new_evar</span></code></a> creates a new evar in the evar map, returning the updated evar map and the fresh evar;</p></li>
+<li><p><a class="api-link reference external" href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Termops/index.html#val-collect_vars"><code class="docutils literal notranslate"><span class="pre">Termops.collect_vars</span></code></a> returns the set of named variables in the term;</p></li>
+<li><p><a class="api-link reference external" href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/EConstr/Vars/index.html#val-replace_vars"><code class="docutils literal notranslate"><span class="pre">EConstr.Vars.replace_vars</span></code></a> replaces every variable in <code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">mappings</span></span></code> with its second element.</p></li>
+</ul>
+<p>Our file now looks as follows:</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Tutorial.v</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-coq notranslate"><div class="highlight"><pre><span></span><span data-line="1"><span class="linenos"> 1</span><span class="kn">Require</span> <span class="kn">Import</span> <span class="n">Camltac.Camltac</span><span class="o">.</span>
+</span><span data-line="2"><span class="linenos"> 2</span>
+</span><span data-line="3"><span class="linenos"> 3</span><span class="n">Camltac</span> <span class="kn">Module</span> <span class="n">ApplySearch</span> <span class="o">:=</span> <span class="n">ocaml</span><span class="o">:{{</span>
+</span><span data-line="4"><span class="linenos"> 4</span>  <span class="k">let</span> <span class="n">create_pattern</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">t</span> <span class="o">=</span>
+</span><span data-line="5"><span class="linenos"> 5</span>    <span class="k">let</span> <span class="n">new_evar_for</span> <span class="n">var</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="n">mappings</span><span class="o">)</span> <span class="o">=</span>
+</span><span data-line="6"><span class="linenos"> 6</span>      <span class="k">let</span> <span class="n">typ</span> <span class="o">=</span> <span class="n">EConstr.of_constr</span> <span class="o">(</span><span class="n">Environ.named_type</span> <span class="n">var</span> <span class="n">env</span><span class="o">)</span> <span class="k">in</span>
+</span><span data-line="7"><span class="linenos"> 7</span>      <span class="k">let</span> <span class="n">sigma</span><span class="o">,</span> <span class="n">evar</span> <span class="o">=</span> <span class="n">Evarutil.new_evar</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">typ</span>
+</span><span data-line="8"><span class="linenos"> 8</span>        <span class="o">~</span><span class="n">src</span><span class="o">:(</span><span class="n">None</span><span class="o">,</span> <span class="n">Evar_kinds.MatchingVar</span> <span class="o">(</span><span class="n">Evar_kinds.FirstOrderPatVar</span> <span class="n">var</span><span class="o">))</span>
+</span><span data-line="9"><span class="linenos"> 9</span>        <span class="o">~</span><span class="n">naming</span><span class="o">:(</span><span class="n">IntroIdentifier</span> <span class="n">var</span><span class="o">)</span>
+</span><span data-line="10"><span class="linenos">10</span>      <span class="k">in</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="o">(</span><span class="n">var</span><span class="o">,</span> <span class="n">evar</span><span class="o">)</span> <span class="o">::</span> <span class="n">mappings</span><span class="o">)</span>
+</span><span data-line="11"><span class="linenos">11</span>    <span class="k">in</span>
+</span><span data-line="12"><span class="linenos">12</span>    <span class="k">let</span> <span class="n">vars</span> <span class="o">=</span> <span class="n">Termops.collect_vars</span> <span class="n">sigma</span> <span class="n">t</span> <span class="k">in</span>
+</span><span data-line="13"><span class="linenos">13</span>    <span class="k">let</span> <span class="n">sigma</span><span class="o">,</span> <span class="n">mappings</span> <span class="o">=</span> <span class="n">Names.Id.Set.fold</span> <span class="n">new_evar_for</span> <span class="n">vars</span> <span class="o">(</span><span class="n">sigma</span><span class="o">,</span> <span class="bp">[]</span><span class="o">)</span> <span class="k">in</span>
+</span><span data-line="14"><span class="linenos">14</span>    <span class="n">Patternops.pattern_of_constr</span> <span class="n">env</span> <span class="n">sigma</span>
+</span><span data-line="15"><span class="linenos">15</span>      <span class="o">(</span><span class="n">EConstr.Vars.replace_vars</span> <span class="n">sigma</span> <span class="n">mappings</span> <span class="n">t</span><span class="o">)</span>
+</span><span data-line="16"><span class="linenos">16</span>
+</span><span data-line="17"><span class="linenos">17</span>  <span class="k">let</span> <span class="n">search</span> <span class="n">env</span> <span class="n">sigma</span> <span class="k">pattern</span> <span class="o">=</span>
+</span><span data-line="18"><span class="linenos">18</span>    <span class="k">let</span> <span class="n">results</span> <span class="o">=</span> <span class="n">ref</span> <span class="bp">[]</span> <span class="k">in</span>
+</span><span data-line="19"><span class="linenos">19</span>    <span class="k">let</span> <span class="n">collect_result</span> <span class="n">res</span> <span class="o">_</span> <span class="o">_</span> <span class="o">_</span> <span class="o">_</span> <span class="o">=</span> <span class="n">results</span> <span class="o">:=</span> <span class="n">res</span> <span class="o">::</span> <span class="o">!</span><span class="n">results</span> <span class="k">in</span>
+</span><span data-line="20"><span class="linenos">20</span>    <span class="n">Search.search_pattern</span> <span class="n">env</span> <span class="n">sigma</span> <span class="k">pattern</span> <span class="o">(</span><span class="n">SearchOutside</span> <span class="bp">[]</span><span class="o">)</span> <span class="n">collect_result</span><span class="o">;</span>
+</span><span data-line="21"><span class="linenos">21</span>    <span class="o">!</span><span class="n">results</span>
+</span><span data-line="22"><span class="linenos">22</span>
+</span><span data-line="23"><span class="linenos">23</span>  <span class="k">let</span> <span class="n">print_results</span> <span class="o">=</span> <span class="n">function</span>
+</span><span data-line="24"><span class="linenos">24</span>    <span class="o">|</span> <span class="bp">[]</span> <span class="o">-&gt;</span> <span class="n">Feedback.msg_info</span> <span class="o">(</span><span class="n">Pp.str</span> <span class="s2">&quot;No theorem could be applied.&quot;</span><span class="o">)</span>
+</span><span data-line="25"><span class="linenos">25</span>    <span class="o">|</span> <span class="n">results</span> <span class="o">-&gt;</span>
+</span><span data-line="26"><span class="linenos">26</span>       <span class="k">let</span> <span class="n">open</span> <span class="n">Pp</span> <span class="k">in</span>
+</span><span data-line="27"><span class="linenos">27</span>       <span class="k">let</span> <span class="n">pr_ref</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">Libnames.pr_path</span> <span class="o">(</span><span class="n">Ltac2.Env.path</span> <span class="n">ref</span><span class="o">)</span> <span class="k">in</span>
+</span><span data-line="28"><span class="linenos">28</span>       <span class="k">let</span> <span class="n">pp</span> <span class="o">=</span> <span class="n">List.fold_left</span>
+</span><span data-line="29"><span class="linenos">29</span>         <span class="o">(</span><span class="k">fun</span> <span class="n">acc</span> <span class="n">res</span> <span class="o">-&gt;</span> <span class="n">acc</span> <span class="o">++</span> <span class="n">fnl</span> <span class="bp">()</span> <span class="o">++</span> <span class="n">pr_ref</span> <span class="n">res</span><span class="o">)</span>
+</span><span data-line="30"><span class="linenos">30</span>         <span class="o">(</span><span class="n">str</span> <span class="s2">&quot;Try this: &quot;</span><span class="o">)</span> <span class="n">results</span> <span class="k">in</span>
+</span><span data-line="31"><span class="linenos">31</span>       <span class="n">Feedback.msg_info</span> <span class="n">pp</span>
+</span><span data-line="32"><span class="linenos">32</span>
+</span><span data-line="33"><span class="linenos">33</span>  <span class="k">let</span> <span class="n">run</span> <span class="bp">()</span> <span class="o">=</span>
+</span><span data-line="34"><span class="linenos">34</span>    <span class="k">match</span><span class="o">%</span><span class="n">rocq</span> <span class="n">goal</span> <span class="k">with</span>
+</span><span data-line="35"><span class="linenos">35</span>    <span class="o">|</span> <span class="o">_,</span> <span class="o">{|</span> <span class="o">?</span><span class="n">conclusion</span> <span class="o">|}</span> <span class="o">-&gt;</span>
+</span><span data-line="36"><span class="linenos">36</span>      <span class="k">let</span><span class="o">*</span> <span class="n">env</span> <span class="o">=</span> <span class="n">Tactic.env</span> <span class="k">in</span>
+</span><span data-line="37"><span class="linenos">37</span>      <span class="k">let</span><span class="o">*</span> <span class="n">sigma</span> <span class="o">=</span> <span class="n">Tactic.sigma</span> <span class="k">in</span>
+</span><span data-line="38"><span class="linenos">38</span>      <span class="k">let</span> <span class="k">pattern</span> <span class="o">=</span> <span class="n">create_pattern</span> <span class="n">env</span> <span class="n">sigma</span> <span class="n">conclusion</span> <span class="k">in</span>
+</span><span data-line="39"><span class="linenos">39</span>      <span class="n">print_results</span> <span class="o">(</span><span class="n">search</span> <span class="n">env</span> <span class="n">sigma</span> <span class="k">pattern</span><span class="o">);</span>
+</span><span data-line="40"><span class="linenos">40</span>      <span class="k">return</span> <span class="bp">()</span>
+</span><span data-line="41"><span class="linenos">41</span><span class="o">}}.</span>
+</span></pre></div>
+</div>
+</div>
+<p>If we rerun the tactic, we now obtain the correct results:</p>
+<pre class="alectryon-io highlight lang-rocq"><!-- Generator: Alectryon --><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">From</span> Stdlib <span class="kn">Require</span> List.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><span class="alectryon-input"><span class="kn">Open Scope</span> list_scope.</span><span class="alectryon-wsp">
+</span></span><span class="alectryon-txt">
+</span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk5" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk5"><span class="kn">Goal</span> <span class="k">forall</span> <span class="nv">A</span> (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A),
+  x ++ y = x ++ z -&gt; y = z.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><span class="goal-separator"><hr></span><div class="goal-conclusion"><span class="k">forall</span> (<span class="nv">A</span> : <span class="kt">Type</span>) (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A), x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk6" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk6"><span class="kn">Proof</span>.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><span class="goal-separator"><hr></span><div class="goal-conclusion"><span class="k">forall</span> (<span class="nv">A</span> : <span class="kt">Type</span>) (<span class="nv">x</span> <span class="nv">y</span> <span class="nv">z</span> : list A), x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input class="alectryon-toggle" id="matching-goals-with-variables-rst-chk7" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk7"><span class="nb">intros</span> A x y z.</label><small class="alectryon-output"><div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Type</span></span></span></span><br><span><var>x, y, z</var><span class="hyp-type"><b>: </b><span>list A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small><span class="alectryon-wsp">
+</span></span><span class="alectryon-wsp">  </span><span class="alectryon-sentence"><input checked="checked" class="alectryon-toggle" id="matching-goals-with-variables-rst-chk8" style="display: none" type="checkbox"><label class="alectryon-input" for="matching-goals-with-variables-rst-chk8">Camltac <span class="kn">Eval</span> <span class="k">ocaml</span>:(<span class="nn">ApplySearch</span><span class="p">.</span>run ()).</label><small class="alectryon-output"><div><div class="alectryon-messages"><blockquote class="alectryon-message">Try this: 
+Stdlib.Lists.List.app_inv_head</blockquote><blockquote class="alectryon-message">- : unit = ()</blockquote></div><div class="alectryon-goals"><blockquote class="alectryon-goal"><div class="goal-hyps"><span><var>A</var><span class="hyp-type"><b>: </b><span><span class="kt">Type</span></span></span></span><br><span><var>x, y, z</var><span class="hyp-type"><b>: </b><span>list A</span></span></span><br></div><span class="goal-separator"><hr></span><div class="goal-conclusion">x ++ y = x ++ z -&gt; y = z</div></blockquote></div></div></small></span></pre></section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="searching-for-exact-matches.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Searching for exact matches</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="importing-the-tactic-in-other-files.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title">Importing the tactic in other files</div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Dario Halilovic (<a href="https://systemf.epfl.ch">SYSTEMF @ EPFL</a>)</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script src="../../_static/suggestions-data.js"></script>
+      <script src="../../_static/search-suggest.js?v=88205e4c"></script>
+      <script src="../../_static/alectryon.js?v=fa737423"></script>
+      <script src="../../_static/shibuya.js?v=50760d75"></script></body>
+</html>

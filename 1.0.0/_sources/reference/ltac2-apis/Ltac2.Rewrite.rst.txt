@@ -1,0 +1,19 @@
+.. _mltac2-api-Ltac2.Rewrite:
+
+``Rewrite``
+===========
+
+.. rst-class:: module-path
+
+``Ltac2.Rewrite``
+
+.. toctree::
+   :hidden:
+
+   Ltac2.Rewrite.Strategy
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec module anchored" id="module-Strategy"><a href="#module-Strategy" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Rewrite.Strategy.html">Strategy</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div><div class="spec-doc"><p>Module for rewrite strategies used by <a href="#val-rewrite_strat"><code>Rewrite.rewrite_strat</code></a>.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-rewrite_strat"><a href="#val-rewrite_strat" class="anchor"></a><code><span><span class="keyword">val</span> rewrite_strat : <span><span class="optlabel">?in_hyp</span>:<a href="../ltac2-apis.html#type-ident">ident</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="Ltac2.Rewrite.Strategy.html#type-t">Strategy.t</a> <span class="arrow">&#45;&gt;</span></span> <span>unit <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Proofview/index.html#type-tactic">Proofview.tactic</a></span></span></code></div><div class="spec-doc"><p>Runs rewrite strategy on the type of a hypothesis or the goal if <code>in_hyp</code> is <code>None</code>.</p><ul class="at-tags"><li class="since"><span class="at-tag">since</span> 9.1</li></ul></div></div>
+   </div>

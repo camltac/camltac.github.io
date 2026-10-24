@@ -1,0 +1,23 @@
+.. _mltac2-api-Ltac2.Constr:
+
+``Constr``
+==========
+
+.. rst-class:: module-path
+
+``Ltac2.Constr``
+
+.. toctree::
+   :hidden:
+
+   Ltac2.Constr.Binder
+   Ltac2.Constr.Cast
+   Ltac2.Constr.Pretype
+   Ltac2.Constr.Relevance
+   Ltac2.Constr.Unsafe
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span><span> = <a href="../ltac2-apis.html#type-constr">constr</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-type_"><a href="#val-type_" class="anchor"></a><code><span><span class="keyword">val</span> type_ : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Environ/index.html#type-env">Environ.env</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> * <a href="#type-t">t</a></span></code></div><div class="spec-doc"><p><code>type_ env sigma t</code> returns the type of <code>t</code> in the given environment and evar map, along with the updated evar map.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-equal"><a href="#val-equal" class="anchor"></a><code><span><span class="keyword">val</span> equal : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>equal sigma t1 t2</code> performs a strict syntactic comparison between <code>t1</code> and <code>t2</code>, only up to α-conversion and evar expansion.</p></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Binder"><a href="#module-Binder" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Binder.html">Binder</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Relevance"><a href="#module-Relevance" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Relevance.html">Relevance</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Unsafe"><a href="#module-Unsafe" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Unsafe.html">Unsafe</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div><div class="spec-doc"><p>Low-level access to kernel terms. Use with care!</p></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Cast"><a href="#module-Cast" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Cast.html">Cast</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec module anchored" id="module-Pretype"><a href="#module-Pretype" class="anchor"></a><code><span><span class="keyword">module</span> <a href="Ltac2.Constr.Pretype.html">Pretype</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-has_evar"><a href="#val-has_evar" class="anchor"></a><code><span><span class="keyword">val</span> has_evar : <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evd/index.html#type-evar_map">Evd.evar_map</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>has_evar sigma t</code> returns <code>true</code> if <code>t</code> contains an evar.</p></div></div>
+   </div>

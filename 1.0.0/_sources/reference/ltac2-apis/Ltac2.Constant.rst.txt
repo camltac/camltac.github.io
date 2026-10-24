@@ -1,0 +1,14 @@
+.. _mltac2-api-Ltac2.Constant:
+
+``Constant``
+============
+
+.. rst-class:: module-path
+
+``Ltac2.Constant``
+
+.. raw:: html
+
+   <div class="odoc">
+   <div class="odoc-spec"><div class="spec type anchored" id="type-t"><a href="#type-t" class="anchor"></a><code><span><span class="keyword">type</span> t</span><span> = <a href="../ltac2-apis.html#type-constant">constant</a></span></code></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-equal"><a href="#val-equal" class="anchor"></a><code><span><span class="keyword">val</span> equal : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> bool</span></code></div><div class="spec-doc"><p><code>equal c1 c2</code> tests equality of constants <code>c1</code> and <code>c2</code>.</p><p>Constants obtained through module aliases or <code>Include</code> are not considered equal by this function.</p></div></div><div class="odoc-spec"><div class="spec value anchored" id="val-print"><a href="#val-print" class="anchor"></a><code><span><span class="keyword">val</span> print : <span><a href="#type-t">t</a> <span class="arrow">&#45;&gt;</span></span> <a href="../ltac2-apis.html#type-message">message</a></span></code></div><div class="spec-doc"><p><code>print c</code> prints the constant using the shortest qualified identifier which refers to it. Does not avoid variable names in the current or global environment.</p></div></div>
+   </div>

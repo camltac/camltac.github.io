@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en" data-accent-color="violet" data-content_root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ltac2 APIs - Camltac documentation</title><link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Constant" href="ltac2-apis/Ltac2.Constant.html" /><link rel="prev" title="Comparison with Ltac2" href="ltac2-comparison.html" /><script>
+    function setColorMode(t){let e=document.documentElement;e.setAttribute("data-color-mode",t);let a=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,s=t;"auto"===t&&(s=a?"dark":"light"),"light"===s?(e.classList.remove("dark"),e.classList.add("light")):(e.classList.remove("light"),e.classList.add("dark"))}
+    setColorMode(localStorage._theme||"auto");
+  </script><link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=75453710" />
+    <link rel="stylesheet" type="text/css" href="../_static/shibuya.css?v=2ceb65ce" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" />
+    <link rel="stylesheet" type="text/css" href="../_static/rocq-notations.css?v=07fd7624" />
+    <link rel="stylesheet" type="text/css" href="../_static/mltac2-api.css?v=fe83dc6f" />
+    <link rel="stylesheet" type="text/css" href="../_static/search-suggest.css?v=581cb6e6" />
+    <link rel="stylesheet" type="text/css" href="../_static/alectryon.css?v=90b20a3a" />
+    <link media="print" rel="stylesheet" type="text/css" href="../_static/print.css?v=20ff2c19" />
+    <link rel="stylesheet" type="text/css" href="../_static/alectryon-dark.css?v=403f2018" />
+    <link rel="stylesheet" type="text/css" href="../_static/hlist.css?v=e3c1df49" />
+    <link rel="stylesheet" type="text/css" href="../_static/sidebar.css?v=3b2e7588" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sy-f-text: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+  --sy-f-heading: "Inter", var(--sy-f-sys), var(--sy-f-cjk), sans-serif;
+}
+</style>
+    
+  <meta property="og:type" content="website"/><meta property="og:title" content="Ltac2 APIs"/>
+    <meta name="twitter:card" content="summary"/>
+  </head>
+<body><div class="sy-head">
+  <div class="sy-head-blur"></div>
+  <div class="sy-head-inner sy-container mx-auto">
+    <a class="sy-head-brand" href="../index.html">
+      
+      
+      <strong>Camltac</strong>
+    </a>
+    <div class="sy-head-nav" id="head-nav">
+      <nav class="sy-head-links"></nav>
+      <div class="sy-head-extra flex items-center print:hidden"><form class="searchbox flex items-center" action="../search.html" method="get">
+  <input type="text" name="q" placeholder="Search" />
+  <kbd>/</kbd>
+</form><div class="sy-head-socials"></div></div>
+    </div>
+    <div class="sy-head-actions flex items-center shrink-0 print:hidden"><button class="js-theme theme-switch flex items-center"
+data-aria-auto="Switch to light color mode"
+data-aria-light="Switch to dark color mode"
+data-aria-dark="Switch to auto color mode">
+<i class="i-lucide theme-icon"></i>
+</button><button class="md:hidden flex items-center js-menu" aria-label="Menu" type="button" aria-controls="head-nav" aria-expanded="false">
+        <div class="hamburger">
+          <span class="hamburger_1"></span>
+          <span class="hamburger_2"></span>
+          <span class="hamburger_3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="sy-page sy-container flex mx-auto">
+  <aside id="lside" class="sy-lside md:w-72 md:shrink-0 print:hidden">
+    <div class="sy-lside-inner md:sticky">
+      <div class="sy-scrollbar p-6">
+        <div class="globaltoc" data-expand-depth="0"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/index.html">Getting started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/overview.html">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/quickstart.html">Quickstart</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting-started/installation.html">Installation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tour/index.html">A tour of Camltac</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tour/running-ocaml-code.html">Running OCaml code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/defining-new-tactics.html">Defining new tactics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/antiquotations.html">Antiquotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/pattern-matching-over-terms.html">Pattern matching over terms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/pattern-matching-over-goals.html">Pattern matching over goals</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/ocaml-libraries-and-preprocessors.html">Using OCaml libraries and preprocessors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/interoperability-with-ltac2.html">Interoperability with Ltac2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/rocq-apis.html">Using internal Rocq APIs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tour/end.html">Going further</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/writing-a-tactic/index.html">Writing a tactic with Camltac</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/setting-up-a-camltac-project.html">Setting up a Camltac project</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/searching-for-exact-matches.html">Searching for exact matches</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/matching-goals-with-variables.html">Matching goals with variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/importing-the-tactic-in-other-files.html">Importing the tactic in other files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/using-the-tactic-from-ltac2.html">Using the tactic from Ltac2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/writing-a-tactic/conclusion.html">Conclusion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../how-tos/index.html">How-to guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../how-tos/setup-dune.html">How to use Camltac with Dune</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-tos/setup-your-makefile.html">How to use Camltac with Makefiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../how-tos/configure-your-editor.html">How to configure your editor</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands/index.html">Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="commands/Run.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Run</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/Module.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Module</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/Load.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="n"><span class="pre">Load</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/Eval.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Eval</span></span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="commands/Check.html"><code class="code highlight coq docutils literal notranslate"><span class="n"><span class="pre">Camltac</span></span> <span class="kn"><span class="pre">Check</span></span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quotations.html">Quotations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pattern-matching.html">Pattern matching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ltac2-comparison.html">Comparison with Ltac2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ltac2 APIs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Constant.html"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.html"><code class="docutils literal notranslate"><span class="pre">Constr</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.Binder.html"><code class="docutils literal notranslate"><span class="pre">Binder</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.Cast.html"><code class="docutils literal notranslate"><span class="pre">Cast</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.Pretype.html"><code class="docutils literal notranslate"><span class="pre">Pretype</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.Relevance.html"><code class="docutils literal notranslate"><span class="pre">Relevance</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Constr.Unsafe.html"><code class="docutils literal notranslate"><span class="pre">Unsafe</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Constructor.html"><code class="docutils literal notranslate"><span class="pre">Constructor</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Control.html"><code class="docutils literal notranslate"><span class="pre">Control</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Env.html"><code class="docutils literal notranslate"><span class="pre">Env</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Fresh.html"><code class="docutils literal notranslate"><span class="pre">Fresh</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Fresh.Free.html"><code class="docutils literal notranslate"><span class="pre">Free</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Ident.html"><code class="docutils literal notranslate"><span class="pre">Ident</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Ind.html"><code class="docutils literal notranslate"><span class="pre">Ind</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Message.html"><code class="docutils literal notranslate"><span class="pre">Message</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Module.html"><code class="docutils literal notranslate"><span class="pre">Module</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Module.Field.html"><code class="docutils literal notranslate"><span class="pre">Field</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Pattern.html"><code class="docutils literal notranslate"><span class="pre">Pattern</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Proj.html"><code class="docutils literal notranslate"><span class="pre">Proj</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Rewrite.html"><code class="docutils literal notranslate"><span class="pre">Rewrite</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Rewrite.Strategy.html"><code class="docutils literal notranslate"><span class="pre">Strategy</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Scheme.html"><code class="docutils literal notranslate"><span class="pre">Scheme</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Std.html"><code class="docutils literal notranslate"><span class="pre">Std</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Std.Red.html"><code class="docutils literal notranslate"><span class="pre">Red</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Syntax.html"><code class="docutils literal notranslate"><span class="pre">Syntax</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Syntax.Induction_arg.html"><code class="docutils literal notranslate"><span class="pre">Induction_arg</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="ltac2-apis/Ltac2.Syntax.Induction_clause.html"><code class="docutils literal notranslate"><span class="pre">Induction_clause</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.TransparentState.html"><code class="docutils literal notranslate"><span class="pre">TransparentState</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="ltac2-apis/Ltac2.Unification.html"><code class="docutils literal notranslate"><span class="pre">Unification</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../explanation/index.html">Explanation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../explanation/why-camltac.html">Why Camltac?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../explanation/execution-model/index.html">Camltac’s execution model</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../explanation/execution-model/parsing.html">Parsing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explanation/execution-model/build-directives.html">Build directives</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explanation/execution-model/compilation.html">Compilation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explanation/execution-model/dynamic-linking.html">Dynamic linking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../explanation/execution-model/runtime.html">Camltac’s runtime</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced-topics/index.html">Advanced topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../advanced-topics/rocq-apis.html">Using Rocq’s internal APIs</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading" aria-level="3"><span class="caption-text">Additional links</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://coq-workshop.gitlab.io/2026/files/EA6.pdf">Rocqshop 2026</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://infoscience.epfl.ch/entities/publication/926430ae-7511-4498-bb12-5c8cf559ec33">Master's thesis</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="lside-overlay js-menu" role="button" aria-label="Close left sidebar" aria-controls="lside" aria-expanded="false"></div>
+  <aside id="rside" class="sy-rside pb-3 w-64 shrink-0 order-last">
+    <button class="rside-close js-menu xl:hidden" aria-label="Close Table of Contents" type="button" aria-controls="rside" aria-expanded="false">
+      <i class="i-lucide close"></i>
+    </button>
+    <div class="sy-scrollbar sy-rside-inner px-6 xl:top-16 xl:sticky xl:pl-0 pt-6 pb-4"><div class="localtoc"><h3>On this page</h3><ul>
+<li><a class="reference internal" href="#built-in-types">Built-in types</a></li>
+<li><a class="reference internal" href="#id2">Ltac2 APIs</a><ul>
+<li><a class="reference internal" href="#constants">Constants</a></li>
+<li><a class="reference internal" href="#terms">Terms</a></li>
+<li><a class="reference internal" href="#constructor">Constructor</a></li>
+<li><a class="reference internal" href="#control">Control</a></li>
+<li><a class="reference internal" href="#environment">Environment</a></li>
+<li><a class="reference internal" href="#fresh-name-generation">Fresh name generation</a></li>
+<li><a class="reference internal" href="#identifiers">Identifiers</a></li>
+<li><a class="reference internal" href="#inductives">Inductives</a></li>
+<li><a class="reference internal" href="#message">Message</a></li>
+<li><a class="reference internal" href="#module">Module</a></li>
+<li><a class="reference internal" href="#pattern">Pattern</a></li>
+<li><a class="reference internal" href="#projections">Projections</a></li>
+<li><a class="reference internal" href="#rewriting">Rewriting</a></li>
+<li><a class="reference internal" href="#schemes">Schemes</a></li>
+<li><a class="reference internal" href="#syntax-dsl">Syntax DSL</a></li>
+<li><a class="reference internal" href="#standard-tactics">Standard tactics</a></li>
+<li><a class="reference internal" href="#transparent-state">Transparent state</a></li>
+<li><a class="reference internal" href="#unification">Unification</a></li>
+</ul>
+</li>
+</ul>
+</div><div id="ethical-ad-placement" data-ea-publisher="readthedocs"></div></div>
+  </aside>
+  <div class="rside-overlay js-menu" role="button" aria-label="Close Table of Contents" aria-controls="rside" aria-expanded="false"></div>
+  <main class="sy-main w-full max-sm:max-w-full print:pt-6">
+<div class="sy-breadcrumbs" role="navigation">
+  <div class="sy-breadcrumbs-inner flex items-center">
+    <div class="md:hidden mr-3">
+      <button class="js-menu" aria-label="Menu" type="button" aria-controls="lside" aria-expanded="false">
+        <i class="i-lucide menu"></i>
+      </button>
+    </div>
+    <ol class="flex-1" itemscope itemtype="https://schema.org/BreadcrumbList"><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="../index.html"><span itemprop="name">Camltac</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="1" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a itemprop="item" href="index.html"><span itemprop="name">Reference</span></a>
+        <span>/</span>
+        <meta itemprop="position" content="2" />
+      </li><li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <strong itemprop="name">Ltac2 APIs</strong>
+        <meta itemprop="position" content="3" />
+      </li></ol>
+    <div class="xl:hidden ml-1">
+      <button class="js-menu" aria-label="Show table of contents" type="button" aria-controls="rside"
+        aria-expanded="false">
+        <i class="i-lucide outdent"></i>
+      </button>
+    </div>
+  </div>
+</div><div class="flex flex-col break-words justify-between">
+      <div class="relative min-w-0 max-w-6xl px-6 pb-6 pt-8 xl:px-12">
+  <article class="yue" role="main">
+          <section id="ltac2-apis">
+<span id="id1"></span><h1>Ltac2 APIs<a class="headerlink" href="#ltac2-apis" title="Link to this heading">#</a></h1>
+<p>This page documents the API of <a class="reference external" href="https://github.com/epfl-systemf/mltac2">MLtac2</a> version 1.0.0.</p>
+<div class="toctree-wrapper compound">
+</div>
+<div class="odoc">
+<p>Re-exports of Rocq APIs under their Ltac2 name.</p><p>Documentation on this file is adapted from the Ltac2 documentation and the reference manual.</p>
+</div><section id="built-in-types">
+<h2>Built-in types<a class="headerlink" href="#built-in-types" title="Link to this heading">#</a></h2>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec type anchored" id="type-ident"><a href="#type-ident" class="anchor"></a><code><span><span class="keyword">type</span> ident</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Id/index.html#type-t">Names.Id.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-evar"><a href="#type-evar" class="anchor"></a><code><span><span class="keyword">type</span> evar</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Evar/index.html#type-t">Evar.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-cast"><a href="#type-cast" class="anchor"></a><code><span><span class="keyword">type</span> cast</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Constr/index.html#type-cast_kind">Constr.cast_kind</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-constant"><a href="#type-constant" class="anchor"></a><code><span><span class="keyword">type</span> constant</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Constant/index.html#type-t">Names.Constant.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-inductive"><a href="#type-inductive" class="anchor"></a><code><span><span class="keyword">type</span> inductive</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Ind/index.html#type-t">Names.Ind.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-constructor"><a href="#type-constructor" class="anchor"></a><code><span><span class="keyword">type</span> constructor</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Construct/index.html#type-t">Names.Construct.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-projection"><a href="#type-projection" class="anchor"></a><code><span><span class="keyword">type</span> projection</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Projection/index.html#type-t">Names.Projection.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-pattern"><a href="#type-pattern" class="anchor"></a><code><span><span class="keyword">type</span> pattern</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Pattern/index.html#type-constr_pattern">Pattern.constr_pattern</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-constr"><a href="#type-constr" class="anchor"></a><code><span><span class="keyword">type</span> constr</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/EConstr/index.html#type-t">EConstr.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-preterm"><a href="#type-preterm" class="anchor"></a><code><span><span class="keyword">type</span> preterm</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Ltac_pretype/index.html#type-closed_glob_constr">Ltac_pretype.closed_glob_constr</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-binder"><a href="#type-binder" class="anchor"></a><code><span><span class="keyword">type</span> binder</span><span> = <span><a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/Name/index.html#type-t">Names.Name.t</a> <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/EConstr/index.html#type-binder_annot">EConstr.binder_annot</a></span> * <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/EConstr/index.html#type-types">EConstr.types</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-message"><a href="#type-message" class="anchor"></a><code><span><span class="keyword">type</span> message</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Pp/index.html#type-t">Pp.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-reference"><a href="#type-reference" class="anchor"></a><code><span><span class="keyword">type</span> reference</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Names/GlobRef/index.html#type-t">Names.GlobRef.t</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-err"><a href="#type-err" class="anchor"></a><code><span><span class="keyword">type</span> err</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Exninfo/index.html#type-iexn">Exninfo.iexn</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-iexn"><a href="#type-iexn" class="anchor"></a><code><span><span class="keyword">type</span> iexn</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Exninfo/index.html#type-iexn">Exninfo.iexn</a></span></code></div></div><div class="odoc-spec"><div class="spec type anchored" id="type-exninfo"><a href="#type-exninfo" class="anchor"></a><code><span><span class="keyword">type</span> exninfo</span><span> = <a href="https://rocq-prover.org/doc/V9.3.0/api/rocq-runtime/Exninfo/index.html#type-info">Exninfo.info</a></span></code></div></div>
+</div></section>
+<section id="id2">
+<h2>Ltac2 APIs<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="constants">
+<h3>Constants<a class="headerlink" href="#constants" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Constant"><a href="#module-Constant" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Constant.html">Constant</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="terms">
+<h3>Terms<a class="headerlink" href="#terms" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Constr"><a href="#module-Constr" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Constr.html">Constr</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="constructor">
+<h3>Constructor<a class="headerlink" href="#constructor" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Constructor"><a href="#module-Constructor" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Constructor.html">Constructor</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="control">
+<h3>Control<a class="headerlink" href="#control" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Control"><a href="#module-Control" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Control.html">Control</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="environment">
+<h3>Environment<a class="headerlink" href="#environment" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Env"><a href="#module-Env" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Env.html">Env</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="fresh-name-generation">
+<h3>Fresh name generation<a class="headerlink" href="#fresh-name-generation" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Fresh"><a href="#module-Fresh" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Fresh.html">Fresh</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="identifiers">
+<h3>Identifiers<a class="headerlink" href="#identifiers" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Ident"><a href="#module-Ident" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Ident.html">Ident</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="inductives">
+<h3>Inductives<a class="headerlink" href="#inductives" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Ind"><a href="#module-Ind" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Ind.html">Ind</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="message">
+<h3>Message<a class="headerlink" href="#message" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Message"><a href="#module-Message" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Message.html">Message</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="module">
+<h3>Module<a class="headerlink" href="#module" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Module"><a href="#module-Module" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Module.html">Module</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="pattern">
+<h3>Pattern<a class="headerlink" href="#pattern" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Pattern"><a href="#module-Pattern" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Pattern.html">Pattern</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="projections">
+<h3>Projections<a class="headerlink" href="#projections" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Proj"><a href="#module-Proj" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Proj.html">Proj</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="rewriting">
+<h3>Rewriting<a class="headerlink" href="#rewriting" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Rewrite"><a href="#module-Rewrite" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Rewrite.html">Rewrite</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="schemes">
+<h3>Schemes<a class="headerlink" href="#schemes" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Scheme"><a href="#module-Scheme" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Scheme.html">Scheme</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="syntax-dsl">
+<h3>Syntax DSL<a class="headerlink" href="#syntax-dsl" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Syntax"><a href="#module-Syntax" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Syntax.html">Syntax</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="standard-tactics">
+<h3>Standard tactics<a class="headerlink" href="#standard-tactics" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Std"><a href="#module-Std" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Std.html">Std</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="transparent-state">
+<h3>Transparent state<a class="headerlink" href="#transparent-state" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-TransparentState"><a href="#module-TransparentState" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.TransparentState.html">TransparentState</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+<section id="unification">
+<h3>Unification<a class="headerlink" href="#unification" title="Link to this heading">#</a></h3>
+<div class="odoc">
+<div class="odoc-spec"><div class="spec module anchored" id="module-Unification"><a href="#module-Unification" class="anchor"></a><code><span><span class="keyword">module</span> <a href="ltac2-apis/Ltac2.Unification.html">Unification</a></span><span> : <span class="keyword">sig</span> ... <span class="keyword">end</span></span></code></div></div>
+</div></section>
+</section>
+</section>
+
+        </article><button class="back-to-top" type="button">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+  </svg>
+  <span>Back to top</span>
+</button><div class="navigation flex print:hidden"><div class="navigation-prev">
+    <a href="ltac2-comparison.html">
+      <i class="i-lucide chevron-left"></i>
+      <div class="page-info">
+        <span>Previous</span><div class="title">Comparison with Ltac2</div></div>
+    </a>
+  </div><div class="navigation-next">
+    <a href="ltac2-apis/Ltac2.Constant.html">
+      <div class="page-info">
+        <span>Next</span>
+        <div class="title"><code class="docutils literal notranslate"><span class="pre">Constant</span></code></div>
+      </div>
+      <i class="i-lucide chevron-right"></i>
+    </a>
+  </div></div></div>
+    </div>
+  </main>
+</div>
+<footer class="sy-foot">
+  <div class="sy-foot-inner sy-container mx-auto">
+    <div class="sy-foot-reserved md:flex justify-between items-center">
+      <div class="sy-foot-copyright"><p>2026, Dario Halilovic (<a href="https://systemf.epfl.ch">SYSTEMF @ EPFL</a>)</p>
+  
+  <p>
+    Made with
+    
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> and
+    
+    <a href="https://shibuya.lepture.com">Shibuya theme</a>.
+  </p>
+</div>
+      <div class="sy-foot-socials"></div>
+    </div>
+  </div>
+</footer>
+      <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../_static/copybutton.js?v=f281be69"></script>
+      <script src="../_static/suggestions-data.js"></script>
+      <script src="../_static/search-suggest.js?v=88205e4c"></script>
+      <script src="../_static/alectryon.js?v=fa737423"></script>
+      <script src="../_static/shibuya.js?v=50760d75"></script></body>
+</html>
